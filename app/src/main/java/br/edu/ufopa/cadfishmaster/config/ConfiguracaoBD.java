@@ -16,7 +16,7 @@ public class ConfiguracaoBD extends AppCompatActivity {
         setContentView(R.layout.activity_configuracao_bd);
     }
 
-    public void criarBD(){
+    public SQLiteDatabase criarBD(){
 
         try{
 
@@ -26,8 +26,8 @@ public class ConfiguracaoBD extends AppCompatActivity {
 
             //Criar tabela
 
-            bancoDeDados.execSQL("CREATE TABLE IF NOT EXISTS usuarios (nome VARCHAR, email VARCHAR, senha VARCHAR ) ");
-            bancoDeDados.execSQL("CREATE TABLE IF NOT EXISTS peixes (especie VARCHAR, peso REAL, tamanho REAL, marca_tag VARCHAR, posicao VARCHAR)");
+            //bancoDeDados.execSQL("CREATE TABLE IF NOT EXISTS usuarios (nome VARCHAR, email VARCHAR, senha VARCHAR ) ");
+            //bancoDeDados.execSQL("CREATE TABLE IF NOT EXISTS peixes (especie VARCHAR, peso REAL, tamanho REAL, marca_tag VARCHAR, posicao VARCHAR)");
 
             //Iserindo dados
             //bancoDeDados.execSQL("INSERT INTO usuarios(nome, email, senha) VALUES ('Luis', 'luisveras@gamil.com', '123')");
@@ -35,10 +35,11 @@ public class ConfiguracaoBD extends AppCompatActivity {
             //recuperar usuarios
             //Cursor cursor =  bancoDeDados.rawQuery("", null);
 
-
+            return bancoDeDados;
         }catch (Exception e){
             e.printStackTrace();
         }
+        return  null;
     }
 
     public void pesquisar(){
@@ -47,6 +48,10 @@ public class ConfiguracaoBD extends AppCompatActivity {
 
     public void inserirDados(){
 
+    }
+
+    public void criarTables(){
+        
     }
 }
 
