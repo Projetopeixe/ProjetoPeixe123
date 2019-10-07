@@ -14,6 +14,10 @@ public class ConfiguracaoBD extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracao_bd);
+    }
+
+    public void criarBD(){
+
         try{
 
             //Criação do banco de dados
@@ -35,6 +39,14 @@ public class ConfiguracaoBD extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void pesquisar(){
+
+    }
+
+    public void inserirDados(){
+
     }
 }
 
