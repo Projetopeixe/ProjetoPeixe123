@@ -3,8 +3,6 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="br.edu.ufopa.cadfishmaster">
 
-    <dist:module dist:instant="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".config.ConfiguracaoBD"></activity>
+        <activity android:name=".activity.MenuActivity"></activity>
         <activity
             android:name=".activity.ActivityCarregamento"
             android:screenOrientation="portrait">
@@ -30,5 +28,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".activity.MainActivity"></activity>
     </application>
+
+    <dist:module dist:instant="true" />
 
 </manifest>
