@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import br.edu.ufopa.cadfishmaster.R;
 
@@ -13,10 +14,18 @@ public class ActivityCarregamento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carregamento);
+        getSupportActionBar().hide();
 
-        abriTelaLogin();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                abriTelaLogin();
+            }
+        }, 3000);
 
     }
+
 
     public void abriTelaLogin(){
         Intent intent = new Intent(getApplicationContext(), LoginUsuarioActivity.class);
