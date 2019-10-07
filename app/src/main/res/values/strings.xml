@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Cad Fish Master</string>
+    <string name="app_name">Cad Fish</string>
+
+    <string name="texto_botao_logar">Logar</string>
+    <string name="texto_inserir_senha">Insira sua senha</string>
+    <string name="texto_inserir_email">Insira seu e-mail</string>
+    <string name="nao_tem_conta">Ainda não tem conta? Cadastre-se</string>
+    <string name="texto_insirir_nome">Insira seu nome</string>
+    <string name="texto_confirmar_senha">Confirme a sua senha</string>
+    <string name="texto_bt_cadastrar_usuario">Cadastrar Usuário</string>
+    <string name="texto_inserir_especie_peixe">Insira a espécie do Peixe</string>
+    <string name="texto_inserir_tamanho">Insira o comprimento do peixe</string>
+    <string name="texto_inserir_peso_peixe">Insira o peso do peixe</string>
+    <string name="texto_bt_cadastrar_peixe">CADASTRAR PEIXE</string>
 </resources>
