@@ -14,5 +14,6 @@ public class ActivityCarregamento extends AppCompatActivity {
         setContentView(R.layout.activity_carregamento);
     }
 
-    //jahfSFGWAXDH 
+    //jahfSFGWAXDH
+    //asdfasdf
 }
