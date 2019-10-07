@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import br.edu.ufopa.cadfishmaster.R;
 
-public class ConfiguracaoBD extends AppCompatActivity {
+public class ConfiguracaoBD extends AppCompatActivity { 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
