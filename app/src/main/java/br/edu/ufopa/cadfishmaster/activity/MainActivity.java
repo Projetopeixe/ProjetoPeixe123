@@ -1,8 +1,10 @@
-package br.edu.ufopa.cadfishmaster;
+package br.edu.ufopa.cadfishmaster.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import br.edu.ufopa.cadfishmaster.R;
 
 public class MainActivity extends AppCompatActivity {
 
