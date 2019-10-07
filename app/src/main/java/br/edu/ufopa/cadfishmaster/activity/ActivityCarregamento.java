@@ -13,4 +13,6 @@ public class ActivityCarregamento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carregamento);
     }
+
+    //jahfSFGWAXDH 
 }
