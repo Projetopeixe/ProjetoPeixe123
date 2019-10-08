@@ -14,11 +14,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView3"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginStart="116dp"
-            android:layout_marginEnd="117dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/padrao"
             app:civ_border_color="#DFDADA"
             app:layout_constraintBottom_toTopOf="@+id/textInputLayout5"
@@ -26,8 +26,7 @@
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout5"
@@ -44,9 +43,11 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNomeCadastroUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/texto_insirir_nome" />
+                android:hint="@string/texto_insirir_nome"
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,9 +65,11 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmailCadastroUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/texto_inserir_email" />
+                android:hint="@string/texto_inserir_email"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -84,9 +87,11 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextSenhaCadastroUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/texto_inserir_senha" />
+                android:hint="@string/texto_inserir_senha"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -104,13 +109,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextSenhaConfirmacaoCadastroUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/texto_confirmar_senha" />
+                android:hint="@string/texto_confirmar_senha"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btCadastrarUsuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"

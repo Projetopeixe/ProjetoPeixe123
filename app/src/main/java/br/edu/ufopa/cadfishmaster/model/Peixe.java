@@ -8,6 +8,10 @@ public class Peixe {
     private String marca_tag;
     private String posicao;
 
+    public Peixe(){
+
+    }
+
     public Peixe(String especie, double peso, double tamanho, String marca_tag, String posicao) {
         this.especie = especie;
         this.peso = peso;

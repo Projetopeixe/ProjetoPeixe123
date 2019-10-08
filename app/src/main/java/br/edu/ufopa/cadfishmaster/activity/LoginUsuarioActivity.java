@@ -29,7 +29,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         });
     }
 
-
     public void carregarComponentes(){
         textoCad = findViewById(R.id.textViewCadastro);
     }
@@ -39,6 +38,5 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
 
 }
