@@ -18,6 +18,7 @@ public class ConfiguracaoBD extends SQLiteOpenHelper {
     public ConfiguracaoBD(@Nullable Context context) {
         super(context, CadFish_BD, null, VERSAO_BANCO);
         criarTabelas();
+        banco();
     }
 
     @Override
@@ -25,7 +26,8 @@ public class ConfiguracaoBD extends SQLiteOpenHelper {
     }
 
     public void inserirUsuario(String nomeIn, String emailIn, String senhaIn){
-        banco().execSQL("INSERT INTO usuarios(nome, email, senha) VALUES (nomeIn, emailIn, senhaIn)");
+
+        //banco().insert("usuarios", null, )
     }
 
     public void inserirPeixe(String especieIn, double pesoIn, double tamanhoIn, String marcaTagIn, String location){
