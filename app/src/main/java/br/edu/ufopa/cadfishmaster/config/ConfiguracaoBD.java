@@ -1,57 +1,30 @@
 package br.edu.ufopa.cadfishmaster.config;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.database.Cursor;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
+import android.database.sqlite.SQLiteOpenHelper;
 
-import br.edu.ufopa.cadfishmaster.R;
+import androidx.annotation.Nullable;
 
-public class ConfiguracaoBD extends AppCompatActivity { 
+public class ConfiguracaoBD extends SQLiteOpenHelper {
+
+    private static final int VERSAO_BANCO = 1;
+    private static final String CadFish_BD = "bd_cadfish";
+
+
+    public ConfiguracaoBD(@Nullable Context context) {
+        super(context, CadFish_BD, null, VERSAO_BANCO);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_configuracao_bd);
-    }
-
-    public SQLiteDatabase criarBD(){
-
-        try{
-
-            //Criação do banco de dados
-
-            SQLiteDatabase bancoDeDados = openOrCreateDatabase("CadFish", MODE_PRIVATE, null);
-
-            //Criar tabela
-
-            //bancoDeDados.execSQL("CREATE TABLE IF NOT EXISTS usuarios (nome VARCHAR, email VARCHAR, senha VARCHAR ) ");
-            //bancoDeDados.execSQL("CREATE TABLE IF NOT EXISTS peixes (especie VARCHAR, peso REAL, tamanho REAL, marca_tag VARCHAR, posicao VARCHAR)");
-
-            //Iserindo dados
-            //bancoDeDados.execSQL("INSERT INTO usuarios(nome, email, senha) VALUES ('Luis', 'luisveras@gamil.com', '123')");
-
-            //recuperar usuarios
-            //Cursor cursor =  bancoDeDados.rawQuery("", null);
-
-            return bancoDeDados;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return  null;
-    }
-
-    public void pesquisar(){
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
     }
 
-    public void inserirDados(){
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-    }
-
-    public void criarTables(){
-        
     }
 }
+
 
