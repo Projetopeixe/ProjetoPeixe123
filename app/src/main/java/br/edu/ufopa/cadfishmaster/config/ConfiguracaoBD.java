@@ -1,9 +1,12 @@
 package br.edu.ufopa.cadfishmaster.config;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,12 +25,17 @@ public class ConfiguracaoBD extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase sqLiteDatabase){
     }
 
-    public void inserirUsuario(String nomeIn, String emailIn, String senhaIn){
 
-        //banco().insert("usuarios", null, )
+
+    public void inserirUsuario(String nomeIn, String emailIn, String senhaIn){
+        ContentValues values = new ContentValues();
+        values.put("nome", nomeIn);
+        values.put("email", emailIn);
+        values.put("senha", senhaIn);
+        banco().insert("usuarios", null, values);
     }
 
     public void inserirPeixe(String especieIn, double pesoIn, double tamanhoIn, String marcaTagIn, String location){
