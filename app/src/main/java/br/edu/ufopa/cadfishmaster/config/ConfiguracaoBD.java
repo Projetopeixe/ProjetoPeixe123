@@ -18,6 +18,7 @@ public class ConfiguracaoBD extends SQLiteOpenHelper {
     private static final String CadFish_BD = "bd_cadfish";
 
 
+
     public ConfiguracaoBD(@Nullable Context context) {
         super(context, CadFish_BD, null, VERSAO_BANCO);
         criarTabelas();
