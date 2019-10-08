@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.config.ConfiguracaoBD;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -55,8 +53,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                         if (!senhaConfirmUser.isEmpty()) {
                             if (senhaConfirmUser.equals(senhaUser)) {
 
-                                ConfiguracaoBD dB = new ConfiguracaoBD(this);
-                                dB.inserirUsuario(nomeUser, emailUser, senhaUser);
+
+
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Senhas não conferem", Toast.LENGTH_SHORT).show();
                             }
