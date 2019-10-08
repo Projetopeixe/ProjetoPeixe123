@@ -28,9 +28,7 @@ public class ConfiguracaoBD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase){
     }
-
-
-
+    
     public void inserirUsuario(String nomeIn, String emailIn, String senhaIn){
         ContentValues values = new ContentValues();
         values.put("nome", nomeIn);
