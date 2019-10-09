@@ -90,6 +90,7 @@
             android:layout_marginStart="96dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="96dp"
+            android:onClick="abrirTelaCadastro"
             android:text="@string/nao_tem_conta"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

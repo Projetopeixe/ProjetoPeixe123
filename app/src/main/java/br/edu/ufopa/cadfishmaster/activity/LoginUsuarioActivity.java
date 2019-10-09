@@ -25,9 +25,8 @@ import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class LoginUsuarioActivity extends AppCompatActivity {
 
-    private TextView textoCad;
+
     private FirebaseAuth autenticacao;
-    private Button buttonLogar;
     private TextInputEditText campoEmail, campoSenha;
 
     @Override
@@ -37,22 +36,16 @@ public class LoginUsuarioActivity extends AppCompatActivity {
 
         carregarComponentes();
 
-        textoCad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirTelaCadastro();
-            }
-        });
+
     }
 
     public void carregarComponentes(){
-        textoCad = findViewById(R.id.textViewCadastro);
         campoEmail = findViewById(R.id.editTextEmailLogin);
         campoSenha = findViewById(R.id.editTextSenhaLogin);
         autenticacao = ConfiguracaoDB.getFirebaseAutenticacao();
     }
 
-    public void abrirTelaCadastro(){
+    public void abrirTelaCadastro(View view){
         Intent intent = new Intent(LoginUsuarioActivity.this, CadastroUsuarioActivity.class);
         startActivity(intent);
 
@@ -69,7 +62,7 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         FirebaseUser usuarioAtual = autenticacao.getCurrentUser();
         if(usuarioAtual != null){
             abrirTelaPrincipal();
-            fecharLogin();
+            //fecharLogin();
         }
     }
 

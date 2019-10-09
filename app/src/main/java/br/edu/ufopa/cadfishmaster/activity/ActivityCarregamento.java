@@ -20,16 +20,16 @@ public class ActivityCarregamento extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                abriTelaLogin();
+                abriTelaInicialLogin();
             }
         }, 3000);
 
     }
 
 
-    public void abriTelaLogin(){
+    public void abriTelaInicialLogin(){
         Intent intent = new Intent(getApplicationContext(), LoginUsuarioActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }
