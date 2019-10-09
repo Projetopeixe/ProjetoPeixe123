@@ -22,4 +22,27 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuDeslogar:
+
+                deslogarUsuario();
+
+                Intent intent = new Intent(MenuActivity.this, LoginUsuarioActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void deslogarUsuario(){
+        auth.signOut();
+    }
+
 }
