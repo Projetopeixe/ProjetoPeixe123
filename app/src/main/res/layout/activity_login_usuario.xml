@@ -76,6 +76,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/bg_botoes"
+            android:onClick="validarAutenticacao"
             android:text="@string/texto_botao_logar"
             app:layout_constraintBottom_toTopOf="@+id/textViewCadastro"
             app:layout_constraintEnd_toEndOf="parent"

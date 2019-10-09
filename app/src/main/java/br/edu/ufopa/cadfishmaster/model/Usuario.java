@@ -1,7 +1,13 @@
 package br.edu.ufopa.cadfishmaster.model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
+import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
+
 public class Usuario {
 
+    private String id;
     private String nome;
     private String email;
     private String senha;
@@ -9,10 +15,27 @@ public class Usuario {
     public Usuario(){
 
     }
+
+    public void salvar(){
+       DatabaseReference firebaseRef = ConfiguracaoDB.getFirebaseDatabase();
+       DatabaseReference usuario = firebaseRef.child("usuarios").child(getId());
+
+       usuario.setValue(this);
+    }
+
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+    }
+
+    @Exclude
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -31,6 +54,7 @@ public class Usuario {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }
