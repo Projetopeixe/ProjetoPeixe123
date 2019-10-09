@@ -26,7 +26,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imagemLogoLogin">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmailLogin"
+                android:id="@+id/editTextLogarEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/texto_inserir_email"

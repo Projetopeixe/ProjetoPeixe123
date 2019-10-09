@@ -30,6 +30,6 @@ public class ActivityCarregamento extends AppCompatActivity {
     public void abriTelaInicialLogin(){
         Intent intent = new Intent(getApplicationContext(), LoginUsuarioActivity.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 }

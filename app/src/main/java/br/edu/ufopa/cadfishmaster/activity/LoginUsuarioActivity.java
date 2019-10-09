@@ -25,7 +25,6 @@ import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class LoginUsuarioActivity extends AppCompatActivity {
 
-
     private FirebaseAuth autenticacao;
     private TextInputEditText campoEmail, campoSenha;
 
@@ -34,93 +33,17 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_usuario);
 
-        carregarComponentes();
-
-
-    }
-
-    public void carregarComponentes(){
-        campoEmail = findViewById(R.id.editTextEmailLogin);
-        campoSenha = findViewById(R.id.editTextSenhaLogin);
-        autenticacao = ConfiguracaoDB.getFirebaseAutenticacao();
     }
 
     public void abrirTelaCadastro(View view){
-        Intent intent = new Intent(LoginUsuarioActivity.this, CadastroUsuarioActivity.class);
-        startActivity(intent);
-
-    }
-
-    public void abrirTelaPrincipal(){
-        Intent intent = new Intent(LoginUsuarioActivity.this, MenuActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CadastroUsuarioActivity.class);
         startActivity(intent);
     }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
-        FirebaseUser usuarioAtual = autenticacao.getCurrentUser();
-        if(usuarioAtual != null){
-            abrirTelaPrincipal();
-            //fecharLogin();
-        }
-    }
-
-    public void fecharLogin(){
-        finish();
-    }
-
-    public void logarUsuario(final Usuario usuario){
-
-        autenticacao.signInWithEmailAndPassword(usuario.getEmail(),
-                usuario.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    abrirTelaPrincipal();
-                    finish();
-                }else {
-                    String excecao = "";
-
-                    try {
-                        throw task.getException();
-                    }catch (FirebaseAuthInvalidCredentialsException e){
-                        excecao = "Usuário e senha não correspondem";
-                    }catch (FirebaseAuthInvalidUserException e){
-                        excecao = "Usuário não cadastrado";
-
-                    }catch (Exception e){
-                        excecao = "Erro ao logar usuário: " + e.getMessage();
-                        e.printStackTrace();
-                    }
-
-                    Toast.makeText(LoginUsuarioActivity.this, excecao, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    public void validarAutenticacao(View view){
-
-        String email = campoEmail.getText().toString();
-        String senha = campoSenha.getText().toString();
-
-        if(!email.isEmpty()){
-            if(!senha.isEmpty()){
-
-                Usuario usuario = new Usuario();
-                usuario.setEmail(email);
-                usuario.setSenha(senha);
-                logarUsuario(usuario);
-                //finish();
 
 
-            }else{
-                Toast.makeText(LoginUsuarioActivity.this, "Preencha o campo de Senha", Toast.LENGTH_SHORT).show();
-            }
-        }else {
-            Toast.makeText(LoginUsuarioActivity.this, "Preencha o campo de E-mail", Toast.LENGTH_SHORT).show();
-        }
-    }
+
+
+
 
 }
