@@ -33,8 +33,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
         setTitle("Cadastro de usuário");
+        carregarComponentesCadastro();
     }
 
-
+    public void carregarComponentesCadastro(){
+        campoNome = findViewById(R.id.editTextNomeCadastro);
+        campoEmail = findViewById(R.id.editTextSenhaCadastro);
+        campoSenha = findViewById(R.id.editTextSenhaCadastro);
+        campoConfirmacaoSenha = findViewById(R.id.editTextConfirmacaoCadastro);
+    }
 
 }

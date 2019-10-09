@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNomeCadastroUsuario"
+                android:id="@+id/editTextNomeCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/texto_insirir_nome"
@@ -65,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmailCadastroUsuario"
+                android:id="@+id/editTextEmailCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/texto_inserir_email"
@@ -87,7 +87,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextSenhaCadastroUsuario"
+                android:id="@+id/editTextSenhaCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/texto_inserir_senha"
@@ -109,7 +109,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextSenhaConfirmacaoCadastroUsuario"
+                android:id="@+id/editTextConfirmacaoCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/texto_confirmar_senha"
