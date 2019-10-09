@@ -32,6 +32,7 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_usuario);
+        carregarComponentes();
 
     }
 
@@ -40,7 +41,10 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void carregarComponentes(){
+        campoEmail = findViewById(R.id.editTextLogarEmail);
+        campoSenha = findViewById(R.id.editTextLogarSenha);
+    }
 
 
 
