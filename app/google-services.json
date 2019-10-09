@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:918782450758:android:ea5c4bcb685fccf72e7e47",
         "android_client_info": {
-          "package_name": "br.edu.ufopa.projetopeixe"
+          "package_name": "br.edu.ufopa.cadfishmaster"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "918782450758-0c6sumb7qphu51h7rvgo0p00o9qvldk4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "br.edu.ufopa.projetopeixe",
+            "package_name": "br.edu.ufopa.cadfishmaster",
             "certificate_hash": "e799d0440b7a8479e29526b67477cb6184fc9ed3"
           }
         },
