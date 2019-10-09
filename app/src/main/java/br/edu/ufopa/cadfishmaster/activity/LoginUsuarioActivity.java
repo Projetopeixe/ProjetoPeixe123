@@ -25,7 +25,7 @@ import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class LoginUsuarioActivity extends AppCompatActivity {
 
-    private FirebaseAuth autenticacao;
+    private FirebaseAuth autenticacao = FirebaseAuth.getInstance();
     private TextInputEditText campoEmail, campoSenha;
 
     @Override
@@ -44,9 +44,55 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     public void carregarComponentes(){
         campoEmail = findViewById(R.id.editTextLogarEmail);
         campoSenha = findViewById(R.id.editTextLogarSenha);
+
     }
 
+    public void validarAutenticacao(View view){
+        String email = campoEmail.getText().toString();
+        String senha = campoSenha.getText().toString();
 
+        if(!email.isEmpty()){
+            if(!senha.isEmpty()){
+
+                Usuario usuario = new Usuario();
+                usuario.setEmail(email);
+                usuario.setSenha(senha);
+                logarUsuario(usuario);
+
+            }else{
+                Toast.makeText(LoginUsuarioActivity.this, "Preencha o campo SENHA", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(LoginUsuarioActivity.this, "Preencha o campo EMAIL", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void logarUsuario(Usuario usuario){
+        autenticacao.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+
+                }else{
+                    String excecao = "";
+
+                    try {
+                        throw task.getException();
+                    }catch (FirebaseAuthInvalidCredentialsException e) {
+                        excecao = "Usuário e senha não correspondem";
+                    }catch (FirebaseAuthInvalidUserException e){
+                        excecao = "Usuário não cadastrado";
+                    }catch (Exception e){
+                        excecao = "Erro ao logar usuário: " + e.getMessage();
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(LoginUsuarioActivity.this, excecao, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
 
 
