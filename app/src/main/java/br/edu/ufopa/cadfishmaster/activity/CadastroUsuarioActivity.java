@@ -2,13 +2,10 @@ package br.edu.ufopa.cadfishmaster.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -18,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-
 import br.edu.ufopa.cadfishmaster.R;
 import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
 import br.edu.ufopa.cadfishmaster.helper.Base64Custom;
@@ -49,22 +45,18 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         String textEmail = campoEmail.getText().toString();
         String textSenha = campoSenha.getText().toString();
         String textConfirmacao = campoConfirmacaoSenha.getText().toString();
-
         if(!textNome.isEmpty()){
             if(!textEmail.isEmpty()){
                 if(!textSenha.isEmpty()){
                     if(!textConfirmacao.isEmpty()){
-
                         Usuario usuario = new Usuario();
                         usuario.setNome(textNome);
                         usuario.setEmail(textEmail);
                         usuario.setSenha(textSenha);
                         cadastrarUsuario(usuario);
-
                     }else{
                         Toast.makeText(CadastroUsuarioActivity.this, "Preencha o campo CONFIRMAÇÃO SENHA", Toast.LENGTH_SHORT).show();
                     }
-
                 }else{
                     Toast.makeText(CadastroUsuarioActivity.this, "Preencha o campo SENHA", Toast.LENGTH_SHORT).show();
                 }
@@ -75,7 +67,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         }else{
             Toast.makeText(CadastroUsuarioActivity.this, "Preencha o campo NOME", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void cadastrarUsuario(final Usuario usuario){
@@ -97,7 +88,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                     }
                 }else {
                     String excecao = "";
-
                     try{
                         throw task.getException();
                     }catch (FirebaseAuthWeakPasswordException e){

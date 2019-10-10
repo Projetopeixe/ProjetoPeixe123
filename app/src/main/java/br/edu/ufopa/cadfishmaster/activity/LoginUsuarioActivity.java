@@ -33,7 +33,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_usuario);
         carregarComponentes();
-
     }
 
     public void abrirTelaCadastro(View view){
@@ -44,7 +43,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     public void carregarComponentes(){
         campoEmail = findViewById(R.id.editTextLogarEmail);
         campoSenha = findViewById(R.id.editTextLogarSenha);
-
     }
 
     public void validarAutenticacao(View view){
@@ -53,12 +51,10 @@ public class LoginUsuarioActivity extends AppCompatActivity {
 
         if(!email.isEmpty()){
             if(!senha.isEmpty()){
-
                 Usuario usuario = new Usuario();
                 usuario.setEmail(email);
                 usuario.setSenha(senha);
                 logarUsuario(usuario);
-
             }else{
                 Toast.makeText(LoginUsuarioActivity.this, "Preencha o campo SENHA", Toast.LENGTH_SHORT).show();
             }
@@ -77,7 +73,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
                     finish();
                 }else{
                     String excecao = "";
-
                     try {
                         throw task.getException();
                     }catch (FirebaseAuthInvalidCredentialsException e) {
@@ -88,7 +83,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
                         excecao = "Erro ao logar usuário: " + e.getMessage();
                         e.printStackTrace();
                     }
-
                     Toast.makeText(LoginUsuarioActivity.this, excecao, Toast.LENGTH_SHORT).show();
                 }
             }
