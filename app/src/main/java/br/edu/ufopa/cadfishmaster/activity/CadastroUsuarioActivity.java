@@ -39,7 +39,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     public void carregarComponentesCadastro(){
         campoNome = findViewById(R.id.editTextNomeCadastro);
-        campoEmail = findViewById(R.id.editTextSenhaCadastro);
+        campoEmail = findViewById(R.id.editTextEmailCadastro);
         campoSenha = findViewById(R.id.editTextSenhaCadastro);
         campoConfirmacaoSenha = findViewById(R.id.editTextConfirmacaoCadastro);
     }
@@ -98,20 +98,20 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 }else {
                     String excecao = "";
 
-                    try {
+                    try{
                         throw task.getException();
-                    }catch (FirebaseNetworkException e) {
-                        excecao = "Por favor, conecte à Internet";
-                    }catch (FirebaseAuthWeakPasswordException e) {
+                    }catch (FirebaseAuthWeakPasswordException e){
                         excecao = "Insira uma senha mais forte";
-                    }catch (FirebaseAuthInvalidCredentialsException e) {
+                    }catch (FirebaseNetworkException e){
+                        excecao = "Por favor, conecte-se à internet";
+                    }catch (FirebaseAuthInvalidCredentialsException e){
                         excecao = "Por favor, insira um e-mail válido";
                     }catch (FirebaseAuthUserCollisionException e){
                         excecao = "Usuário já existe";
                     }catch (Exception e){
-                        excecao = "Erro ao cadastrar usuário: " + e.getMessage();
+                        excecao = "Erro ao cadastrar: " + e.getMessage();
+                        e.printStackTrace();
                     }
-
                     Toast.makeText(CadastroUsuarioActivity.this, excecao, Toast.LENGTH_SHORT).show();
                 }
             }

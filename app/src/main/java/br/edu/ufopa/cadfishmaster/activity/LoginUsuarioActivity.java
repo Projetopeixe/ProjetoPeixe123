@@ -73,7 +73,8 @@ public class LoginUsuarioActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-
+                    abrirTelaPrincipal();
+                    finish();
                 }else{
                     String excecao = "";
 
@@ -94,6 +95,22 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser usuarioAtual = autenticacao.getCurrentUser();
+        if( usuarioAtual != null){
+            abrirTelaPrincipal();
+            fecharLogin();
+        }
+    }
 
+    public void fecharLogin(){
+        finish();
+    }
 
+    public void abrirTelaPrincipal(){
+        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+        startActivity(intent);
+    }
 }
