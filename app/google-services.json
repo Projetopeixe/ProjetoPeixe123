@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "918782450758",
-    "firebase_url": "https://projeto-peixe0.firebaseio.com",
-    "project_id": "projeto-peixe0",
-    "storage_bucket": "projeto-peixe0.appspot.com"
+    "project_number": "22043194324",
+    "firebase_url": "https://cadfish-85f76.firebaseio.com",
+    "project_id": "cadfish-85f76",
+    "storage_bucket": "cadfish-85f76.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:918782450758:android:ea5c4bcb685fccf72e7e47",
+        "mobilesdk_app_id": "1:22043194324:android:23e685b8a52a43cc8edc41",
         "android_client_info": {
           "package_name": "br.edu.ufopa.cadfishmaster"
         }
       },
       "oauth_client": [
         {
-          "client_id": "918782450758-0c6sumb7qphu51h7rvgo0p00o9qvldk4.apps.googleusercontent.com",
+          "client_id": "22043194324-b4k9g7fvs8qeffa4hb7mtuvr7qih8ah7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.edu.ufopa.cadfishmaster",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "918782450758-anb4qpui4ct7csca796tvdk1fjofqjrt.apps.googleusercontent.com",
+          "client_id": "22043194324-km52ctoeckthka7vvemeo95hbao68es6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyANFwHEw7EhcHXm_VPRp_v-wvjeSJ0cklY"
+          "current_key": "AIzaSyDuv5Z-LaiY1SjBVcumbb5I5pGqVLzVI4Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "918782450758-anb4qpui4ct7csca796tvdk1fjofqjrt.apps.googleusercontent.com",
+              "client_id": "22043194324-km52ctoeckthka7vvemeo95hbao68es6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

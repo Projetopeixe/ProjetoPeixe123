@@ -15,15 +15,12 @@ public class ActivityCarregamento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carregamento);
         getSupportActionBar().hide();
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 abriTelaInicialLogin();
             }
         }, 3000);
-
     }
 
 
