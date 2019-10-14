@@ -8,28 +8,43 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
+import br.edu.ufopa.cadfishmaster.fragments.CadastrarEspecieMenu;
+import br.edu.ufopa.cadfishmaster.fragments.FragmentHomeMenu;
+import br.edu.ufopa.cadfishmaster.fragments.FragmentMenuCadastrarPeixe;
 
 public class MenuActivity extends AppCompatActivity {
 
     private FirebaseAuth auth =FirebaseAuth.getInstance();
-    private ViewPager screenPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        setTitle("Home");
+        setTitle("Cad Fish");
         getSupportActionBar().setElevation(0);
 
 
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(),
+                FragmentPagerItems.with(this)
+                        .add("Home", FragmentHomeMenu.class)
+                        .add("Cadastrar Peixe", FragmentMenuCadastrarPeixe.class)
+                        .add("Cadastrar Espécie", CadastrarEspecieMenu.class)
+                        .create()
+        );
+        ViewPager viewPager = findViewById(R.id.viewpager2);
+        viewPager.setAdapter( adapter );
+
+        SmartTabLayout viewPagerTab = findViewById(R.id.smartTabLayout);
+        viewPagerTab.setViewPager( viewPager );
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
