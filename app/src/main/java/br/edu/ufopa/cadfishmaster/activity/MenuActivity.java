@@ -21,7 +21,6 @@ public class MenuActivity extends AppCompatActivity {
 
     private FirebaseAuth auth =FirebaseAuth.getInstance();
     private ViewPager screenPager;
-    ScreenViewAdapter screenViewAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +28,7 @@ public class MenuActivity extends AppCompatActivity {
         setTitle("Home");
         getSupportActionBar().setElevation(0);
 
-        List<ScreenItem> list = new ArrayList<>();
-        list.add(new ScreenItem("Cad Fish", "Cadastre peixes para pesca esportiva", R.drawable.logo));
-        list.add(new ScreenItem("Cad Fish", "Cadastre uma espécie nova se você for um administrador!", R.drawable.peixe));
 
-        screenPager = findViewById(R.id.screenView);
-        screenViewAdapter = new ScreenViewAdapter(this, list);
-        screenPager.setAdapter(screenViewAdapter);
     }
 
     @Override
