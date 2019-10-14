@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2e7d32</color>
-    <color name="colorPrimaryDark">#1b5e20</color>
+    <color name="colorPrimary">#2E7D32</color>
+    <color name="colorPrimaryDark">#1B5E20</color>
     <color name="colorAccent">#86B5D0</color>
+
+    <!-- button-->
+    <color name="gradient_start_color">#4CAF50</color>
+    <color name="gradient_end_color">#47BE4B</color>
+
+    <!-- text-->
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="texto_description">#656565</color>
 </resources>
