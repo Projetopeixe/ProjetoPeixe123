@@ -90,23 +90,6 @@
             app:layout_constraintGuide_begin="580dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout11"
-            android:layout_width="307dp"
-            android:layout_height="57dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="188dp"
-            android:background="@drawable/bg_edit_text2"
-            app:layout_constraintBottom_toTopOf="@+id/buttonNextPasso2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView9">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/texto_inserir_marca_tag" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout9"
             android:layout_width="0dp"
             android:layout_height="56dp"
@@ -120,9 +103,11 @@
             app:layout_constraintVertical_bias="0.904">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campoPesoCadastroPeixe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/texto_inserir_peso_peixe" />
+                android:hint="@string/texto_inserir_peso_peixe"
+                android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -138,10 +123,32 @@
             app:layout_constraintStart_toEndOf="@+id/textView8">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campoTamCadastroPeixe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/texto_inserir_tamanho" />
+                android:hint="@string/texto_inserir_tamanho"
+                android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout11"
+            android:layout_width="307dp"
+            android:layout_height="57dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="192dp"
+            android:background="@drawable/bg_edit_text2"
+            app:layout_constraintBottom_toTopOf="@+id/buttonNextPasso2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campoTagCadastroPeixe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/texto_inserir_marca_tag"
+                android:inputType="textShortMessage" />
+        </com.google.android.material.textfield.TextInputLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

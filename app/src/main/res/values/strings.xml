@@ -9,12 +9,9 @@
     <string name="texto_confirmar_senha">Confirme a sua senha</string>
     <string name="texto_bt_cadastrar_usuario">Cadastrar Usuário</string>
     <string name="texto_inserir_especie_peixe">Insira a espécie do Peixe</string>
-    <string name="texto_inserir_tamanho">Insira o comprimento do peixe</string>
-    <string name="texto_inserir_peso_peixe">Insira o peso do peixe</string>
+    <string name="texto_inserir_tamanho">Insira o comprimento do peixe (cm)</string>
+    <string name="texto_inserir_peso_peixe">Insira o peso do peixe (kg)</string>
     <string name="texto_bt_cadastrar_peixe">CADASTRAR PEIXE</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps_localizacao">Map</string>
     <string name="texto_proximo">Próximo</string>
     <string name="texto_anterior">Anterior</string>

@@ -29,6 +29,9 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
 
         buttonNext = (Button) findViewById(R.id.buttonNextPasso2);
         buttonBack = (Button) findViewById(R.id.buttonBackPasso2);
+        campoPeso = findViewById(R.id.campoPesoCadastroPeixe);
+        campoTamanho = findViewById(R.id.campoTamCadastroPeixe);
+        campoTag = findViewById(R.id.campoTagCadastroPeixe);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
