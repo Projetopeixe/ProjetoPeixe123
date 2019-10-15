@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".activity.cadastro_peixe.CadastroDePeixePasso2">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:drawableRight="@drawable/ic_next_24dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/white"
+            android:text="@string/texto_proximo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/button3"
+            android:drawableLeft="@drawable/ic_back24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/white"
+            android:text="@string/texto_anterior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="200dp"
+            android:text="Tag"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayout11"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Peso"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayout9"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.76" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="48dp"
+            android:text="Tamanho"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayout10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="580dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout11"
+            android:layout_width="307dp"
+            android:layout_height="57dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="188dp"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/texto_inserir_marca_tag" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout9"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.904">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/texto_inserir_peso_peixe" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout10"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/texto_inserir_tamanho" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

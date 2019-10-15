@@ -16,4 +16,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps_localizacao">Map</string>
+    <string name="texto_proximo">Próximo</string>
+    <string name="texto_anterior">Anterior</string>
+    <string name="texto_inserir_marca_tag">Insira a Marca Tag do Peixe</string>
 </resources>

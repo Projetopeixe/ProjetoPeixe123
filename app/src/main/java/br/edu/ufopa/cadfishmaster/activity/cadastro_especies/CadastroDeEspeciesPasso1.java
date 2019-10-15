@@ -11,6 +11,6 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_de_especies);
+        setContentView(R.layout.activity_cadastro_de_especies_passo1);
     }
 }
