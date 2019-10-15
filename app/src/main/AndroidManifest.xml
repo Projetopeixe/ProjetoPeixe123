@@ -29,7 +29,6 @@
         <activity
             android:name=".activity.CadastroUsuarioActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
     <dist:module dist:instant="true" />
