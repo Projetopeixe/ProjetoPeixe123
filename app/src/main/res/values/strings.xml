@@ -19,4 +19,6 @@
     <string name="texto_proximo">Próximo</string>
     <string name="texto_anterior">Anterior</string>
     <string name="texto_inserir_marca_tag">Insira a Marca Tag do Peixe</string>
+    <string name="texto_carregar_imagem">Carregar Imagem</string>
+    <string name="texto_localizacao">Localização</string>
 </resources>
