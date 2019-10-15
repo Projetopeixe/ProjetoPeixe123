@@ -40,6 +40,9 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                 if(!peso.isEmpty()){
                     if(!tamanho.isEmpty()){
                         if(!tag.isEmpty()){
+                            Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
+                            startActivity(intent);
+                            finish();
 
                         }else{
                             Toast.makeText(getApplicationContext(), "Informe a Marca Tag", Toast.LENGTH_SHORT).show();
