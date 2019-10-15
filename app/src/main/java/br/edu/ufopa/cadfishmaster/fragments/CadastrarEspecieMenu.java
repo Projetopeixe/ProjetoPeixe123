@@ -1,8 +1,6 @@
 package br.edu.ufopa.cadfishmaster.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.activity.CadastroDeEspeciesActivity;
+import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +38,7 @@ public class CadastrarEspecieMenu extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CadastroDeEspeciesActivity.class);
+                Intent intent = new Intent(getActivity(), CadastroDeEspeciesPasso1.class);
                 startActivity(intent);
             }
         });
