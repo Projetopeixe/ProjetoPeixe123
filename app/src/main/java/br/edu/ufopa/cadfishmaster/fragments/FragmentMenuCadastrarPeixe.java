@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.activity.CadastroDePeixesActivity;
+import br.edu.ufopa.cadfishmaster.activity.cadastro_peixe.CadastroDePeixesPasso1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,11 +35,11 @@ public class FragmentMenuCadastrarPeixe extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CadastroDePeixesActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), CadastroDePeixesPasso1.class);
+                startActivity(intent);;
+
             }
         });
-
         return view;
     }
 }
