@@ -16,7 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import br.edu.ufopa.cadfishmaster.R;
 import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso1;
 
-public class CadastroDePeixesPasso1 extends AppCompatActivity {
+public class CadastroDePeixePasso1 extends AppCompatActivity {
 
     private Button buttonNext;
     private TextInputEditText campoEspecie;

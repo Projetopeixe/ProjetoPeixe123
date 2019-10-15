@@ -21,7 +21,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso1" />
-        <activity android:name=".activity.cadastro_peixe.CadastroDePeixesPasso1" />
+        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso1" />
         <activity android:name=".activity.MenuActivity" />
         <activity
             android:name=".activity.ActivityCarregamento"

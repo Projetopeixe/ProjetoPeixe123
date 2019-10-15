@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context=".activity.cadastro_peixe.CadastroDePeixesPasso1">
+        tools:context=".activity.cadastro_peixe.CadastroDePeixePasso1">
 
         <Button
             android:id="@+id/buttonProximoCadPPass1"

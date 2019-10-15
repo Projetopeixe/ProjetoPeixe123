@@ -12,5 +12,6 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_peixe_passo3);
+        getSupportActionBar().setTitle("Cadastro de Peixe");
     }
 }
