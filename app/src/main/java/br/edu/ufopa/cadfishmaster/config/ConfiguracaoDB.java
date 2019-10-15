@@ -47,7 +47,7 @@ public class ConfiguracaoDB {
         return db;
     }
 
-    public void saveNote(String especie, double peso, double tamanho, String marca_tag, String posicao){ 
+    public void saveNote(String especie, double peso, double tamanho, String marca_tag, String posicao){
         Peixe peixe = new Peixe(especie, peso, tamanho, marca_tag, posicao);
 
         db.collection("Peixe").document("Espécie do Peixe").set(peixe)
