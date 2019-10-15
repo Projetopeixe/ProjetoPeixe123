@@ -7,7 +7,7 @@
     tools:context=".fragments.CadastrarEspecieMenu">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonNewEspecie"
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -58,7 +58,7 @@
         android:gravity="center|center_horizontal|center_vertical"
         android:text='Utilize o app "Cad Fish" para realizar o cadastro de novas espécies de peixes.'
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNewEspecie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
