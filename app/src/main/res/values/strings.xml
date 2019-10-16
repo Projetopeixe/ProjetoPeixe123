@@ -23,6 +23,7 @@
 
 
     <string name="title_activity_mapa">Map</string>
+    <string name="texto_nome_especie">Espécie</string>
     <string-array name="peixes">
         <item>Tambaqui</item>
         <item>Pacu</item>
