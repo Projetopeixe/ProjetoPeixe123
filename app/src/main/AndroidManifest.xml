@@ -26,14 +26,6 @@
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso4"></activity>
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso3" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso2" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
         <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso1" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso1" />
         <activity android:name=".activity.MenuActivity" />
@@ -53,13 +45,8 @@
             android:name=".activity.CadastroUsuarioActivity"
             android:screenOrientation="portrait" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+
     </application>
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <dist:module dist:instant="true" />
 
 </manifest>
