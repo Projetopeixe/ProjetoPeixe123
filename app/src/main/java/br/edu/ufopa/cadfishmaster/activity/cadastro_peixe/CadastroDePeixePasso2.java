@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,6 +34,7 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
         campoTamanho = findViewById(R.id.campoTamCadastroPeixe);
         campoTag = findViewById(R.id.campoTagCadastroPeixe);
 
+
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +47,7 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                         if(!tag.isEmpty()){
                             Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
                             startActivity(intent);
+
                             finish();
 
                         }else{
