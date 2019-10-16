@@ -18,4 +18,5 @@
     <string name="texto_inserir_marca_tag">Insira a Marca Tag do Peixe</string>
     <string name="texto_carregar_imagem">Carregar Imagem</string>
     <string name="texto_localizacao">Localização</string>
+    <string name="texto_finalizar_cadastro">Finalizar Cadastro</string>
 </resources>

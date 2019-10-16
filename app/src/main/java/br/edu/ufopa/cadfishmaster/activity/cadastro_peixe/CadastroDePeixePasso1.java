@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -19,7 +20,7 @@ import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesP
 public class CadastroDePeixePasso1 extends AppCompatActivity {
 
     private Button buttonNext;
-    private TextInputEditText campoEspecie;
+    private AutoCompleteTextView campoEspecie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

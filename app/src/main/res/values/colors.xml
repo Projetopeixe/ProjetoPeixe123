@@ -10,6 +10,6 @@
 
     <!-- text-->
     <color name="tab_indicator_gray">#c0c0c0</color>
-    <color name="intro_title_color">#000000</color>
+    <color name="intro_title_color">#E5000000</color>
     <color name="texto_description">#656565</color>
 </resources>

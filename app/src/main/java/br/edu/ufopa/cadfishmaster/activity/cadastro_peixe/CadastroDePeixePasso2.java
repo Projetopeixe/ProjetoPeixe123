@@ -62,7 +62,7 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CadastroDeEspeciesPasso1.class);
+                Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso1.class);
                 startActivity(intent);
                 finish();
             }
