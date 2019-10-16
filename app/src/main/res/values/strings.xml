@@ -22,7 +22,7 @@
     <string name="text_selecionar_especie">Selecione o nome da Espécie</string>
 
 
-
+    <string name="title_activity_mapa">Map</string>
     <string-array name="peixes">
         <item>Tambaqui</item>
         <item>Pacu</item>
@@ -30,6 +30,6 @@
         <item>Pirarara</item>
         <item>Tucunaré</item>
         <item>Piranha</item>
-        </string-array>
+    </string-array>
 
 </resources>
