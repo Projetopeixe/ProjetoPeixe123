@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/btautocomplete"
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_marginEnd="80dp"
