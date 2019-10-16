@@ -16,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name=".activity.cadastro_peixe.MapsActivity"
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
+        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso4" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -24,11 +31,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity
-            android:name=".activity.cadastro_peixe.ActivityMapa"
-            android:label="@string/title_activity_mapa"></activity>
-
-        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso4" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso3" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso2" />
         <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso1" />
