@@ -3,8 +3,10 @@ package br.edu.ufopa.cadfishmaster.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ufopa.cadfishmaster.R;
 import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
+import br.edu.ufopa.cadfishmaster.config.Permissoes;
 import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class LoginUsuarioActivity extends AppCompatActivity {
@@ -28,11 +31,14 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao = FirebaseAuth.getInstance();
     private TextInputEditText campoEmail, campoSenha;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_usuario);
         carregarComponentes();
+        //Validar Permissões
+
     }
 
     public void abrirTelaCadastro(View view){
@@ -107,4 +113,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
         startActivity(intent);
     }
+
+
 }
