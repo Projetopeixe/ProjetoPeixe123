@@ -2,10 +2,12 @@ package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.R.layout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,10 @@ import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesP
 
 public class CadastroDePeixePasso1 extends AppCompatActivity {
 
+    private static final String[] PEIXES = new String[]{
+            "Tambaqui", "Pacu", "Pirarucu", "Pirarara", "Tucunaré", "Piranha"
+    };
+
     private Button buttonNext;
     private AutoCompleteTextView campoEspecie;
 
@@ -27,6 +33,13 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
+
+        String[] countries = getResources().getStringArray(R.array.peixes);
+
+        AutoCompleteTextView editText = findViewById(R.id.campoEspecieCadPeixe);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.autocomplete, R.id.text_view_list_item, PEIXES); 
+        editText.setAdapter(adapter);
 
         buttonNext = (Button) findViewById(R.id.buttonProximoCadPPass1);
         campoEspecie = findViewById(R.id.campoEspecieCadPeixe);
@@ -48,12 +61,13 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Informe a Espécie", Toast.LENGTH_SHORT).show();
                 }
 
-
-
             }
+
         });
 
     }
+
+
 
 
 }

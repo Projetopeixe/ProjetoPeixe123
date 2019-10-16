@@ -19,4 +19,17 @@
     <string name="texto_carregar_imagem">Carregar Imagem</string>
     <string name="texto_localizacao">Localização</string>
     <string name="texto_finalizar_cadastro">Finalizar Cadastro</string>
+    <string name="text_selecionar_especie">Selecione o nome da Espécie</string>
+
+
+
+    <string-array name="peixes">
+        <item>Tambaqui</item>
+        <item>Pacu</item>
+        <item>Pirarucu</item>
+        <item>Pirarara</item>
+        <item>Tucunaré</item>
+        <item>Piranha</item>
+        </string-array>
+
 </resources>
