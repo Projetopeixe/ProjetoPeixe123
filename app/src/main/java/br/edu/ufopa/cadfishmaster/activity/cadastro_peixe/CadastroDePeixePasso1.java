@@ -38,7 +38,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
 
         AutoCompleteTextView editText = findViewById(R.id.campoEspecieCadPeixe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.autocomplete, R.id.text_view_list_item, PEIXES); 
+                R.layout.autocomplete, R.id.text_view_list_item, PEIXES);
         editText.setAdapter(adapter);
 
         buttonNext = (Button) findViewById(R.id.buttonProximoCadPPass1);
