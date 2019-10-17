@@ -1,31 +1,41 @@
 package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.R.layout;
 import android.content.Intent;
+import android.graphics.ImageDecoder;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.Source;
 
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso1;
 
 public class CadastroDePeixePasso1 extends AppCompatActivity {
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private static final String[] PEIXES = new String[]{
             "Tambaqui", "Pacu", "Pirarucu", "Pirarara", "Tucunaré", "Piranha"
     };
-
 
     private Button buttonNext;
     private AutoCompleteTextView campoEspecie;
@@ -36,14 +46,30 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
 
+        final List<String> peixesArray = new ArrayList<>();
+        db.collection("cities")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                peixesArray.add(String.valueOf(document.getData()));
+
+                            }
+                        } else {
+
+                        }
+                    }
+                });
+
+
+
         final String[] peixes = getResources().getStringArray(R.array.peixes);
         ImageView imag = findViewById(R.id.btautocomplete);
-
-
-
         final AutoCompleteTextView editText = findViewById(R.id.campoEspecieCadPeixe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.autocomplete, R.id.text_view_list_item, PEIXES);
+                R.layout.autocomplete, R.id.text_view_list_item, peixesArray); 
         editText.setAdapter(adapter);
 
         imag.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +104,10 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
 
         });
 
+
+
+
     }
-
-
 
 
 }
