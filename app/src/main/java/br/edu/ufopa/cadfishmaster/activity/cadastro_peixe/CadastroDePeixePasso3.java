@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import br.edu.ufopa.cadfishmaster.R;
 
@@ -17,6 +18,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
 
     private Button buttonNext;
     private Button buttonBack;
+    private ImageView pesquisarLocation;
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
 
@@ -28,6 +30,17 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
 
         buttonNext = findViewById(R.id.buttonNextPasso3);
         buttonBack = findViewById(R.id.buttonBackPasso3);
+        pesquisarLocation = findViewById(R.id.pesquisarLocation);
+
+        pesquisarLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
