@@ -12,6 +12,16 @@ public class Peixe {
 
     }
 
+    public Peixe(String especie){
+        this.especie = especie;
+    }
+
+    public Peixe(double peso, double tamanho, String marca_tag){
+        this.peso = peso;
+        this.tamanho = tamanho;
+        this.marca_tag = marca_tag;
+    }
+
     public Peixe(String especie, double peso, double tamanho, String marca_tag, String posicao) {
         this.especie = especie;
         this.peso = peso;
