@@ -18,12 +18,13 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_especies_passo1);
-        buttonNextespecie = findViewById(R.id.buttonNextespecie);
+        buttonNextespecie = findViewById(R.id.buttonProximoEspecie);
         buttonNextespecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CadastroDeEspeciesPasso2.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
     <Button
-        android:id="@+id/buttonNextespecie"
+        android:id="@+id/buttonProximoEspecie"
         android:layout_width="110dp"
         android:layout_height="49dp"
         android:layout_marginTop="164dp"
