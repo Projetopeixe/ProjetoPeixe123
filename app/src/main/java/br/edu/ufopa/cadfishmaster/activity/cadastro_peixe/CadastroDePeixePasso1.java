@@ -49,6 +49,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
 
+        final List<String> espciesPeixe = new ArrayList<>();
         DocumentReference documentReference = db.collection("especies peixes").document("HHZOwsFXytlghIOlxjHc");
 
         Source source = Source.CACHE;
@@ -60,8 +61,23 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
                 if (task.isSuccessful()){
                     DocumentSnapshot documentSnapshot = task.getResult();
                     Log.i("Sucesso", "Cached document data: " + documentSnapshot.getData());
+
                 }else {
                     Log.i("Erro Cache", "Cached document data: " + task.getException());
+                }
+            }
+        });
+
+        db.collection("especies peixes").get(source).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot document: task.getResult()){
+                    espciesPeixe.add(document.getString("01"));
+                    }
+                }else{
+
                 }
             }
         });
@@ -72,6 +88,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
                 if (task.isSuccessful()){
                     DocumentSnapshot documentSnapshot = task.getResult();
                     Log.i("SucessoOnline", "Cached document data: " + documentSnapshot.getData());
+
                 }else {
                     Log.i("ErroOnline", "Cached document data: " + task.getException());
                 }
@@ -82,7 +99,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         ImageView imag = findViewById(R.id.btautocomplete);
         final AutoCompleteTextView editText = findViewById(R.id.campoEspecieCadPeixe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.autocomplete, R.id.text_view_list_item, PEIXES);
+                R.layout.autocomplete, R.id.text_view_list_item, espciesPeixe);
         editText.setAdapter(adapter);
 
         imag.setOnClickListener(new View.OnClickListener() {
