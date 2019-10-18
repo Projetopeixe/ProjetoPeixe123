@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
@@ -49,6 +50,10 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
 
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED).build();
+        db.setFirestoreSettings(settings);
+
+
         final List<String> espciesPeixe = new ArrayList<>();
         DocumentReference documentReference = db.collection("especies peixes").document("HHZOwsFXytlghIOlxjHc");
 
@@ -68,20 +73,6 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
             }
         });
 
-        db.collection("especies peixes").get(source).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot document: task.getResult()){
-                    espciesPeixe.add(document.getString("01"));
-                    }
-                }else{
-
-                }
-            }
-        });
-
         documentReference.get(sourceOnline).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -91,6 +82,18 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
 
                 }else {
                     Log.i("ErroOnline", "Cached document data: " + task.getException());
+                }
+            }
+        });
+
+        db.collection("especies peixes").get(source).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot document: task.getResult()){
+                        espciesPeixe.add(document.getString("01"));
+
+                    }
                 }
             }
         });
