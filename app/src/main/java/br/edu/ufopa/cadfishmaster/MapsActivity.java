@@ -1,12 +1,19 @@
 package br.edu.ufopa.cadfishmaster;
 
 import androidx.fragment.app.FragmentActivity;
+
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -36,9 +43,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        //Type of map
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //Event of click
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+                Double latitude = latLng.latitude;
+                Double longitude = latLng.longitude;
+                Toast.makeText(MapsActivity.this, "Lat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title("Local")
+                        .snippet("Descrição")
+                        .icon(
+                                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
+                        ));
+            }
+        });
+
+        // Add a marker in Sydney and move the camera
+        LatLng ibirapuera = new LatLng(-23.587650, -46.659788);
+        mMap.addMarker(new MarkerOptions()
+                .position(ibirapuera)
+                .title("Ibirapuera")
+                .icon(
+                        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
+                ));
+        mMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(ibirapuera, 15)
+        );
     }
 }
