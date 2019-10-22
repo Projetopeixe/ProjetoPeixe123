@@ -2,7 +2,6 @@ package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -11,7 +10,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
+import br.edu.ufopa.cadfishmaster.MapsActivity;
 import br.edu.ufopa.cadfishmaster.R;
 
 public class CadastroDePeixePasso3 extends AppCompatActivity {
@@ -32,15 +31,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBackPasso3);
         pesquisarLocation = findViewById(R.id.pesquisarLocation);
 
-        pesquisarLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-                startActivity(intent);
 
-
-            }
-        });
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,4 +88,11 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
             }
         }
     }
+
+    public void abrirMapa(View view){
+        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        startActivity(intent);
+    }
+
+
 }
