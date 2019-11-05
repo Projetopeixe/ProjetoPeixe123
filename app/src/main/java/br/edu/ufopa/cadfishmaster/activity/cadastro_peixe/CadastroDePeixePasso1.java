@@ -1,47 +1,21 @@
 package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.CursorIndexOutOfBoundsException;
-import android.graphics.ImageDecoder;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
-import io.opencensus.tags.Tag;
 
 public class CadastroDePeixePasso1 extends AppCompatActivity {
-
-
 
     private static final String[] PEIXES = new String[]{
             "Tambaqui", "Pacu", "Pirarucu", "Pirarara", "Tucunaré", "Piranha"
     };
-
     private Button buttonNext;
     private AutoCompleteTextView campoEspecie;
 
@@ -50,9 +24,6 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
-
-
-
 
         final String[] peixes = getResources().getStringArray(R.array.peixes);
         ImageView imag = findViewById(R.id.btautocomplete);
