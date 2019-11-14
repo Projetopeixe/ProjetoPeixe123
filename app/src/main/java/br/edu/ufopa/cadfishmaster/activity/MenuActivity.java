@@ -34,8 +34,10 @@ public class MenuActivity extends AppCompatActivity {
 
     private  String[] permissoesNecessarias = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.INTERNET
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +101,7 @@ public class MenuActivity extends AppCompatActivity {
     private void alertaValidacaoPermissao(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Permissões Negadas!");
-        builder.setMessage("Para realizar cadastro de peixes é necessário aceitar as permissões");
+        builder.setMessage("Para utilizar o aplicativo é necessário aceitar as permissões");
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

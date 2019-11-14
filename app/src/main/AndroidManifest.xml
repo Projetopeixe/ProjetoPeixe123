@@ -9,9 +9,11 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
@@ -36,11 +38,6 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso2" />
@@ -49,10 +46,17 @@
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso2" />
         <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso1" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso1" />
-        <activity android:name=".activity.MenuActivity" />
+        <activity android:name=".activity.MenuActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.ActivityCarregamento"
             android:screenOrientation="portrait">
+
 
         </activity>
         <activity
