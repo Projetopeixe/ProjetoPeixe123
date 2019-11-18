@@ -3,9 +3,12 @@ package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
@@ -36,7 +39,8 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
     private TextInputEditText localizacao;
-
+    private LocationManager locationManager;
+    private LocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,6 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBackPasso3);
         pesquisarLocation = findViewById(R.id.pesquisarLocation);
         localizacao = findViewById(R.id.editTextLocalizacao);
-
 
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +72,47 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
             }
         });
 
-        Bundle dados = getIntent().getExtras();
-        if(dados != null){
-            Location location = (Location) dados.get("location");
-            localizacao.setHint(location.toString());
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Double lat = location.getLatitude();
+                Double longi = location.getLongitude();
+
+                localizacao.setHint("Lat: " + lat.toString() + ", Long: " + longi.toString());
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+
+        /*
+         * 1) Provedor da localizaÃ§Ã£o
+         * 2) Tempo mÃ­nimo entre atualizacÃµes de localizaÃ§Ã£o (milesegundos)
+         * 3) Distancia mÃ­nima entre atualizacÃµes de localizaÃ§Ã£o (metros)
+         * 4) Location listener (para recebermos as atualizaÃ§Ãµes)
+         * */
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    0,
+                    0,
+                    locationListener
+            );
         }
 
     }
