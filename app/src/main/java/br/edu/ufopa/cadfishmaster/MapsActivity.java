@@ -16,6 +16,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,12 +41,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     };
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private Button btn_confirmar;
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        btn_confirmar = findViewById(R.id.btn_confirmar_location);
+        btn_confirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent = new Intent(MapsActivity.this, CadastroDePeixePasso3.class);
+              startActivity(intent);
+              finish();
+            }
+        });
         //Validar permissÃµes
         Permissoes.validarPermissoes(permissoes, this, 1);
 
@@ -65,8 +77,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onLocationChanged(Location location) {
                 Log.d("Localizacao", "onLocationChanged: " + location.toString());
-                Double latitude = location.getLatitude();
-                Double longitude = location.getLongitude();
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
 
                 //mMap.clear();
                 LatLng localUsuario = new LatLng(latitude, longitude);
@@ -74,9 +86,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localUsuario,15));
 
                 Intent i = new Intent(MapsActivity.this, CadastroDePeixePasso3.class);
-                i.putExtra("latitude", latitude);
-                i.putExtra("longitude", longitude);
-
+                i.putExtra("location", location);
 
             }
 

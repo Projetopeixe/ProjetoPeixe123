@@ -35,7 +35,6 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
     private ImageView pesquisarLocation;
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
-
     private TextInputEditText localizacao;
 
 
@@ -70,11 +69,10 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
             }
         });
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            Double latitude = extras.getDouble("latitude");
-            Double longitude = extras.getDouble("longitude");
-            localizacao.setHint("Lat: " + latitude.toString() + ", Long: " + longitude.toString());
+        Bundle dados = getIntent().getExtras();
+        if(dados != null){
+            Location location = (Location) dados.get("location");
+            localizacao.setHint(location.toString());
         }
 
     }
