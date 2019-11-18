@@ -31,6 +31,22 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBackPasso3);
         pesquisarLocation = findViewById(R.id.pesquisarLocation);
 
+        Bundle dados = getIntent().getExtras();
+        String especie = dados.getString("especie");
+        Double peso = dados.getDouble("peso");
+        Double tamanho = dados.getDouble("tamanho");
+        String tag = dados.getString("tag");
+
+        Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
+        intent.putExtra("especie", especie);
+        intent.putExtra("peso", peso);
+        intent.putExtra("tamanho", tamanho);
+        intent.putExtra("tag", tag);
+
+        startActivity(intent);
+
+        finish();
+
 
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
