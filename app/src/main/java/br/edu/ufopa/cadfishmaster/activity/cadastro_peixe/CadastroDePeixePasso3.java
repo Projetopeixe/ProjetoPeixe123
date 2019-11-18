@@ -1,15 +1,30 @@
 package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.textfield.TextInputEditText;
+
 import br.edu.ufopa.cadfishmaster.MapsActivity;
 import br.edu.ufopa.cadfishmaster.R;
 
@@ -20,6 +35,8 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
     private ImageView pesquisarLocation;
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
+    private TextInputEditText localizacao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +47,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         buttonNext = findViewById(R.id.buttonNextPasso3);
         buttonBack = findViewById(R.id.buttonBackPasso3);
         pesquisarLocation = findViewById(R.id.pesquisarLocation);
+        localizacao = findViewById(R.id.editTextLocalizacao);
 
         Bundle dados = getIntent().getExtras();
         String especie = dados.getString("especie");
@@ -66,6 +84,13 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                 finish();
             }
         });
+
+        Bundle dados = getIntent().getExtras();
+        if(dados != null){
+            Location location = (Location) dados.get("location");
+            localizacao.setHint(location.toString());
+        }
+
     }
 
     public void carregarArmazenamento(View view){
@@ -108,6 +133,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
     public void abrirMapa(View view){
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

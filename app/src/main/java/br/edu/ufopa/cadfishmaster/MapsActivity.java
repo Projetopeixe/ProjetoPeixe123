@@ -1,16 +1,23 @@
 package br.edu.ufopa.cadfishmaster;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,23 +30,64 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Map;
 
+import br.edu.ufopa.cadfishmaster.activity.cadastro_peixe.CadastroDePeixePasso3;
+import br.edu.ufopa.cadfishmaster.config.Permissoes;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private String[] permissoes = new String[]{
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private Button btn_confirmar;
 
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        //Objeto responsável por gerenciar a localização do usuário
+        btn_confirmar = findViewById(R.id.btn_confirmar_location);
+        btn_confirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent = new Intent(MapsActivity.this, CadastroDePeixePasso3.class);
+              startActivity(intent);
+              finish();
+            }
+        });
+        //Validar permissÃµes
+        Permissoes.validarPermissoes(permissoes, this, 1);
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        //Objeto responsÃ¡vel por gerenciar a localizaÃ§Ã£o do usuÃ¡rio
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Log.d("Localizacao", "onLocationChanged: " + location.toString());
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+
+                //mMap.clear();
+                LatLng localUsuario = new LatLng(latitude, longitude);
+                mMap.addMarker(new MarkerOptions().position(localUsuario).title("Meu local"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localUsuario,15));
+
+                Intent i = new Intent(MapsActivity.this, CadastroDePeixePasso3.class);
+                i.putExtra("location", location);
+
             }
 
             @Override
@@ -57,41 +105,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         };
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
 
-    }
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        //Type of map
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        /*
+         * 1) Provedor da localizaÃ§Ã£o
+         * 2) Tempo mÃ­nimo entre atualizacÃµes de localizaÃ§Ã£o (milesegundos)
+         * 3) Distancia mÃ­nima entre atualizacÃµes de localizaÃ§Ã£o (metros)
+         * 4) Location listener (para recebermos as atualizaÃ§Ãµes)
+         * */
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     0,
-                    10,
+                    0,
                     locationListener
             );
         }
 
-
-        // Add a marker in Sydney and move the camera
-        LatLng ibirapuera = new LatLng(-23.587650, -46.659788);
-        mMap.addMarker(new MarkerOptions()
-                .position(ibirapuera)
-                .title("Ibirapuera")
-                .icon(
-                        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
-                ));
-        mMap.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(ibirapuera, 15)
-        );
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        for (int permissaoResultado : grantResults) {
+
+            //permission denied (negada)
+            if (permissaoResultado == PackageManager.PERMISSION_DENIED) {
+                //Alerta
+                alertaValidacaoPermissao();
+            } else if (permissaoResultado == PackageManager.PERMISSION_GRANTED) {
+                //Recuperar localizacao do usuario
+
+                /*
+                 * 1) Provedor da localizaÃ§Ã£o
+                 * 2) Tempo mÃ­nimo entre atualizacÃµes de localizaÃ§Ã£o (milesegundos)
+                 * 3) Distancia mÃ­nima entre atualizacÃµes de localizaÃ§Ã£o (metros)
+                 * 4) Location listener (para recebermos as atualizaÃ§Ãµes)
+                 * */
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER,
+                            0,
+                            0,
+                            locationListener
+                    );
+                }
+            }
+        }
+    }
+
+    private void alertaValidacaoPermissao(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("PermissÃµes Negadas");
+        builder.setMessage("Para utilizar o app Ã© necessÃ¡rio aceitar as permissÃµes");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }
