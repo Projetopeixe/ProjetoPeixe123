@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Map;
 
+import br.edu.ufopa.cadfishmaster.activity.cadastro_peixe.CadastroDePeixePasso3;
 import br.edu.ufopa.cadfishmaster.config.Permissoes;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -38,7 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -70,6 +72,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng localUsuario = new LatLng(latitude, longitude);
                 mMap.addMarker(new MarkerOptions().position(localUsuario).title("Meu local"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localUsuario,15));
+
+                Intent i = new Intent(MapsActivity.this, CadastroDePeixePasso3.class);
+                i.putExtra("latitude", latitude);
+                i.putExtra("longitude", longitude);
+
 
             }
 
