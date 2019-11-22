@@ -39,8 +39,6 @@ public class CadastroDePeixePasso4 extends AppCompatActivity {
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Bundle dados = getIntent().getExtras();
 
                 if (dados != null){
@@ -71,8 +69,8 @@ public class CadastroDePeixePasso4 extends AppCompatActivity {
                             });
 
                 }
-
                 finish();
+
             }
         });
     }
