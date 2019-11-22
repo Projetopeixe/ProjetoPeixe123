@@ -32,43 +32,45 @@ public class CadastroDePeixePasso4 extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_de_peixe_passo4);
         getSupportActionBar().setTitle("Cadastro de Peixe");
 
-        Bundle dados = getIntent().getExtras();
 
-        if (dados != null){
-            String especie = dados.getString("especie");
-            Double peso = dados.getDouble("peso");
-            Double tamanho = dados.getDouble("tamanho");
-            String tag = dados.getString("tag");
-
-            Peixe peixe = new Peixe(especie, peso, tamanho, tag);
-            peixe.setNome(especie);
-            peixe.setPeso(peso);
-            peixe.setTamanho(tamanho);
-            peixe.setMarca_tag(tag);
-
-            db.collection("peixes")
-                    .add(peixe)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(getApplicationContext(), "Sucesso ao cadastrar peixe", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(), "Falha ao cadastrar peixe", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-        }
 
         finalizar = (Button) findViewById(R.id.buttonFinalizarCadPeix);
 
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle dados = getIntent().getExtras();
+
+                if (dados != null){
+                    String especie = dados.getString("especie");
+                    Double peso = dados.getDouble("peso");
+                    Double tamanho = dados.getDouble("tamanho");
+                    String tag = dados.getString("tag");
+
+                    Peixe peixe = new Peixe(especie, peso, tamanho, tag);
+                    peixe.setNome(especie);
+                    peixe.setPeso(peso);
+                    peixe.setTamanho(tamanho);
+                    peixe.setMarca_tag(tag);
+
+                    db.collection("peixes")
+                            .add(peixe)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(getApplicationContext(), "Sucesso ao cadastrar peixe", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "Falha ao cadastrar peixe", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                }
                 finish();
+
             }
         });
     }
