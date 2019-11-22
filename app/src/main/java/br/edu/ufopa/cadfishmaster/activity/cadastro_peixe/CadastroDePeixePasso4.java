@@ -33,21 +33,27 @@ public class CadastroDePeixePasso4 extends AppCompatActivity {
 
         finalizar = (Button) findViewById(R.id.buttonFinalizarCadPeix);
         Bundle dados = getIntent().getExtras();
-        String especie = dados.getString("especie");
-        Double peso = dados.getDouble("peso");
-        Double tamanho = dados.getDouble("tamanho");
-        String tag = dados.getString("tag");
-        String localizacao = dados.getString("localizacao");
+        if(dados != null){
+            String especie = dados.getString("especie");
+            Double peso = dados.getDouble("peso");
+            Double tamanho = dados.getDouble("tamanho");
+            String tag = dados.getString("tag");
 
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("especie", especie);
-        docData.put("peso", peso);
-        docData.put("tamanho", tamanho);
-        docData.put("tag", tag);
-        docData.put("localizacao", localizacao);
+            String localizacao = dados.getString("localizacao");
+            Map<String, Object> docData = new HashMap<>();
+            docData.put("especie", especie);
+            docData.put("peso", peso);
+            docData.put("tamanho", tamanho);
+            docData.put("tag", tag);
+            docData.put("localizacao", localizacao);
 
-        ConfiguracaoDB configuracaoDB = new ConfiguracaoDB();
-        configuracaoDB.saveNote(docData);
+            ConfiguracaoDB configuracaoDB = new ConfiguracaoDB();
+            configuracaoDB.saveNote(docData);
+        }
+
+
+
+
 
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override

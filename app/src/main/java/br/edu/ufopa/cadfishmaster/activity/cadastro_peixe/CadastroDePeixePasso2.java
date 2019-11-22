@@ -47,16 +47,20 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                         if(!tag.isEmpty()){
 
                             Bundle dados = getIntent().getExtras();
-                            String especie = dados.getString("especie");
 
-                            Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
-                            intent.putExtra("especie", especie);
-                            intent.putExtra("peso", peso);
-                            intent.putExtra("tamanho", tamanho);
-                            intent.putExtra("tag", tag);
+                            if (dados != null){
+                                String especie = dados.getString("especie");
 
-                            startActivity(intent);
+                                Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
+                                intent.putExtra("especie", especie);
+                                intent.putExtra("peso", peso);
+                                intent.putExtra("tamanho", tamanho);
+                                intent.putExtra("tag", tag);
 
+                            }
+
+                            Intent intent2 = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
+                            startActivity(intent2);
                             finish();
 
                         }else{

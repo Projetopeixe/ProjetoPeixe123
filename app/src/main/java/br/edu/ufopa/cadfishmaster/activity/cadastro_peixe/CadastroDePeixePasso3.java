@@ -54,21 +54,21 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         localizacao = findViewById(R.id.editTextLocalizacao);
 
         Bundle dados = getIntent().getExtras();
-        String especie = dados.getString("especie");
-        Double peso = dados.getDouble("peso");
-        Double tamanho = dados.getDouble("tamanho");
-        String tag = dados.getString("tag");
+        if(dados != null) {
+            String especie = dados.getString("especie");
+            Double peso = dados.getDouble("peso");
+            Double tamanho = dados.getDouble("tamanho");
+            String tag = dados.getString("tag");
 
-        Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
-        intent.putExtra("especie", especie);
-        intent.putExtra("peso", peso);
-        intent.putExtra("tamanho", tamanho);
-        intent.putExtra("tag", tag);
+            Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
+            intent.putExtra("especie", especie);
+            intent.putExtra("peso", peso);
+            intent.putExtra("tamanho", tamanho);
+            intent.putExtra("tag", tag);
+            startActivity(intent);
 
-        startActivity(intent);
-
-        finish();
-
+            finish();
+        }
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
