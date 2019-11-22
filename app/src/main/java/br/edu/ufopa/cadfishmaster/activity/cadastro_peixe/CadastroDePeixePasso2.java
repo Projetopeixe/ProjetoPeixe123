@@ -45,6 +45,8 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                 if(!peso.isEmpty()){
                     if(!tamanho.isEmpty()){
                         if(!tag.isEmpty()){
+                            Double tamanho2 = Double.parseDouble(tamanho);
+                            Double peso2 = Double.parseDouble(peso);
 
                             Bundle dados = getIntent().getExtras();
 
@@ -53,8 +55,8 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
 
                                 Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
                                 intent.putExtra("especie", especie);
-                                intent.putExtra("peso", peso);
-                                intent.putExtra("tamanho", tamanho);
+                                intent.putExtra("peso", peso2);
+                                intent.putExtra("tamanho", tamanho2);
                                 intent.putExtra("tag", tag);
 
                             }
