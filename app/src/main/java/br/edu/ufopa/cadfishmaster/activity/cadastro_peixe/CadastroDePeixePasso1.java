@@ -25,7 +25,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
 
-        //final String[] peixes = getResources().getStringArray(R.array.peixes);
+        final String[] peixes = getResources().getStringArray(R.array.peixes);
         ImageView imag = findViewById(R.id.btautocomplete);
         final AutoCompleteTextView editText = findViewById(R.id.campoEspecieCadPeixe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
