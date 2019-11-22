@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Map;
+
 import br.edu.ufopa.cadfishmaster.model.Peixe;
 
 public class ConfiguracaoDB {
@@ -47,10 +49,8 @@ public class ConfiguracaoDB {
         return db;
     }
 
-    public void saveNote(String especie, double peso, double tamanho, String marca_tag, String posicao){
-        Peixe peixe = new Peixe(especie, peso, tamanho, marca_tag, posicao);
-
-        db.collection("Peixe").document("Espécie do Peixe").set(peixe)
+    public void saveNote(Map<String, Object> dados){
+        db.collection("Peixe").document("Espécie do Peixe").set(dados)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
