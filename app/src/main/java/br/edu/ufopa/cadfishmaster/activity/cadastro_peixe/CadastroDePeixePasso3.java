@@ -28,6 +28,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DecimalFormat;
+
 import br.edu.ufopa.cadfishmaster.MapsActivity;
 import br.edu.ufopa.cadfishmaster.R;
 
@@ -53,28 +55,28 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         pesquisarLocation = findViewById(R.id.pesquisarLocation);
         localizacao = findViewById(R.id.editTextLocalizacao);
 
-        Bundle dados = getIntent().getExtras();
-        if(dados != null) {
-            String especie = dados.getString("especie");
-            Double peso = dados.getDouble("peso");
-            Double tamanho = dados.getDouble("tamanho");
-            String tag = dados.getString("tag");
 
-            Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
-            intent.putExtra("especie", "especie");
-            intent.putExtra("peso", "peso");
-            intent.putExtra("tamanho", "tamanho");
-            intent.putExtra("tag", "tag");
-            startActivity(intent);
-
-            finish();
-        }
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle dados = getIntent().getExtras();
+                if(dados != null) {
+                    String especie = dados.getString("especie");
+                    Double peso = dados.getDouble("peso");
+                    Double tamanho = dados.getDouble("tamanho");
+                    String tag = dados.getString("tag");
+
+                    Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
+                    intent.putExtra("especie", especie);
+                    intent.putExtra("peso", peso);
+                    intent.putExtra("tamanho", tamanho);
+                    intent.putExtra("tag", tag);
+                }
                 Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
+
                 startActivity(intent);
+
                 finish();
             }
         });
@@ -93,10 +95,15 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+
                 Double lat = location.getLatitude();
                 Double longi = location.getLongitude();
+                DecimalFormat format = new DecimalFormat("###.000");
+                String latitude = format.format(lat);
+                String longitude = format.format(longi);
 
-                localizacao.setHint("Lat: " + lat.toString() + ", Long: " + longi.toString());
+
+                localizacao.setHint("Lat: " + latitude+ ", Long: " + longitude);
 
             }
 

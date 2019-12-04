@@ -12,8 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/white"
+        android:background="@drawable/bg_edit_text"
         android:drawableRight="@drawable/ic_next_24dp"
+        android:padding="8sp"
         android:text="@string/texto_proximo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/white"
+        android:background="@drawable/bg_edit_text"
         android:drawableLeft="@drawable/ic_back24dp"
+        android:padding="8sp"
         android:text="@string/texto_anterior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -109,7 +111,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
         android:layout_width="292dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="132dp"
         android:background="@drawable/bg_edit_text2"
@@ -119,7 +121,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextLocalizacao"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="match_parent"
             android:textColorHint="@color/common_google_signin_btn_text_dark_focused" />
     </com.google.android.material.textfield.TextInputLayout>
 

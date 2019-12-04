@@ -59,11 +59,10 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                                 intent.putExtra("tamanho", "tamanho2");
                                 intent.putExtra("tag", "tag");
 
+                                Intent intent2 = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
+                                startActivity(intent2);
+                                finish();
                             }
-
-                            Intent intent2 = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
-                            startActivity(intent2);
-                            finish();
 
                         }else{
                             Toast.makeText(getApplicationContext(), "Informe a Marca Tag", Toast.LENGTH_SHORT).show();

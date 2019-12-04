@@ -46,17 +46,17 @@
         <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso2" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso4" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso3">
-
-        </activity>
-        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso2" />
-        <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso1" />
-        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso1" />
-        <activity android:name=".activity.MenuActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso2" />
+        <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso1" />
+        <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso1" />
+        <activity android:name=".activity.MenuActivity" >
+
         </activity>
         <activity
             android:name=".activity.ActivityCarregamento"

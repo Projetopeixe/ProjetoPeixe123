@@ -58,13 +58,15 @@ public class CadastroDePeixePasso4 extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(getApplicationContext(), "Sucesso ao cadastrar peixe", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Sucesso Ao cadastrar", Toast.LENGTH_LONG).show();
+                                    Log.i("Sucesso ao cadastrar", "Sucess");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Falha ao cadastrar peixe", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Erro ao cadastrar", Toast.LENGTH_LONG).show();
+                                    Log.i("Erro ao cadastrar", "Err");
                                 }
                             });
 
