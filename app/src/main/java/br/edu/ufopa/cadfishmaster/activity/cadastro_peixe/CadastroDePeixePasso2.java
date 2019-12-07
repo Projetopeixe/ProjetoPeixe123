@@ -54,10 +54,10 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                                 String especie = dados.getString("especie");
 
                                 Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
-                                intent.putExtra("especie", especie);
-                                intent.putExtra("peso", peso2);
-                                intent.putExtra("tamanho", tamanho2);
-                                intent.putExtra("tag", tag);
+                                intent.putExtra("especie", "especie");
+                                intent.putExtra("peso", "peso2");
+                                intent.putExtra("tamanho", "tamanho2");
+                                intent.putExtra("tag", "tag");
 
                             }
 

@@ -39,8 +39,9 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
             }
         });
 
-        buttonNext = (Button) findViewById(R.id.buttonProximoCadPPass1);
+        buttonNext = findViewById(R.id.buttonProximoCadPPass1);
         campoEspecie = findViewById(R.id.campoEspecieCadPeixe);
+
 
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +53,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
                 if (!especie.isEmpty()){
 
                     Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso2.class);
-                    intent.putExtra("especie", especie);
+                    intent.putExtra("especie", "especie");
                     startActivity(intent);
                     finish();
                 }else{
