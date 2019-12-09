@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.google.android.material.textfield.TextInputEditText;
 import br.edu.ufopa.cadfishmaster.R;
 
@@ -23,10 +25,14 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
             public void onClick(View view) {
 
                 String especiePeixe = especie.getText().toString();
-                Intent intent = new Intent(CadastroDeEspeciesPasso1.this, CadastroDeEspeciesPasso2.class);
-                intent.putExtra("especie", especiePeixe);
-                startActivity(intent);
-                finish();
+                if (especiePeixe.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Preenha o campo de espécie!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(CadastroDeEspeciesPasso1.this, CadastroDeEspeciesPasso2.class);
+                    intent.putExtra("especie", especiePeixe);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
