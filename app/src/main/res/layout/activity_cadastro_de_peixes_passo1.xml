@@ -14,7 +14,7 @@
         tools:context=".activity.cadastro_peixe.CadastroDePeixePasso1">
 
         <AutoCompleteTextView
-            android:id="@+id/campoEspecieCadPeixe"
+            android:id="@+id/campoEspeciePeixe"
             android:layout_width="240dp"
             android:layout_height="44dp"
             android:layout_marginStart="32dp"
@@ -51,7 +51,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/campoEspecieCadPeixe"
+            app:layout_constraintStart_toEndOf="@+id/campoEspeciePeixe"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_seta_abaixo24dp" />
@@ -93,7 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/campoEspecieCadPeixe"
+            app:layout_constraintTop_toBottomOf="@+id/campoEspeciePeixe"
             app:layout_constraintVertical_bias="0.044"
             app:srcCompat="@mipmap/ic_launcher_round" />
 

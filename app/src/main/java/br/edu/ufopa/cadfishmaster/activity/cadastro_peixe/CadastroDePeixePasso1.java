@@ -27,7 +27,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
 
         final String[] peixes = getResources().getStringArray(R.array.peixes);
         ImageView imag = findViewById(R.id.btautocomplete);
-        final AutoCompleteTextView editText = findViewById(R.id.campoEspecieCadPeixe);
+        final AutoCompleteTextView editText = findViewById(R.id.campoEspeciePeixe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.autocomplete, R.id.text_view_list_item, PEIXES);
         editText.setAdapter(adapter);
@@ -40,9 +40,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         });
 
         buttonNext = findViewById(R.id.buttonProximoCadPPass1);
-        campoEspecie = findViewById(R.id.campoEspecieCadPeixe);
-
-
+        campoEspecie = findViewById(R.id.campoEspeciePeixe);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +50,7 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
 
                 if (!especie.isEmpty()){
                     Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso2.class);
-                    intent.putExtra("especie", "especie");
+                    intent.putExtra("especie", especie);
                     startActivity(intent);
                     finish();
                 }else{

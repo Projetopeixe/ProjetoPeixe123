@@ -53,11 +53,12 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
                             if (dados != null){
                                 String especie = dados.getString("especie");
 
+                                Toast.makeText(getApplicationContext(), "Passou = " + especie, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
-                                intent.putExtra("especie", "especie");
-                                intent.putExtra("peso", "peso2");
-                                intent.putExtra("tamanho", "tamanho2");
-                                intent.putExtra("tag", "tag");
+                                intent.putExtra("especie", especie);
+                                intent.putExtra("peso", peso2);
+                                intent.putExtra("tamanho", tamanho2);
+                                intent.putExtra("tag", tag);
 
                                 Intent intent2 = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
                                 startActivity(intent2);
