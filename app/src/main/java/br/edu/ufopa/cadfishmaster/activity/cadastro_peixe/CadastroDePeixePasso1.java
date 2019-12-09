@@ -51,7 +51,6 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
                 String especie = campoEspecie.getText().toString();
 
                 if (!especie.isEmpty()){
-
                     Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso2.class);
                     intent.putExtra("especie", "especie");
                     startActivity(intent);

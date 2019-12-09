@@ -69,9 +69,10 @@ public class CadastroDePeixePasso4 extends AppCompatActivity {
                                     Log.i("Erro ao cadastrar", "Err");
                                 }
                             });
+                    finish();
 
                 }
-                finish();
+
 
             }
         });

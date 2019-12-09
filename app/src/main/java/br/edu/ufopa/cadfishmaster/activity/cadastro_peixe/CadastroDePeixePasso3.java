@@ -72,12 +72,10 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                     intent.putExtra("peso", peso);
                     intent.putExtra("tamanho", tamanho);
                     intent.putExtra("tag", tag);
+                    startActivity(intent);
+                    finish();
                 }
-                Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
 
-                startActivity(intent);
-
-                finish();
             }
         });
 

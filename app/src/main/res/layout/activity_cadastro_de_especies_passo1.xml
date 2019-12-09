@@ -77,14 +77,17 @@
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:background="@drawable/bg_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/especiePeixe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/texto_inserir_especie_peixe" />
+            android:hint="@string/texto_inserir_especie_peixe"
+            android:inputType="textShortMessage" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.Guideline
