@@ -48,10 +48,11 @@ public class CadastroDeEspeciesPasso2 extends AppCompatActivity {
                     HashMap<String, Object> especieValor = new HashMap<>();
                     especieValor.put("especie", especie);
 
-                    db.collection("teste").add(especieValor)
+                    db.collection("especiespeixes").add(especieValor)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
+
                                     Toast.makeText(getApplicationContext(), "Cadastrou", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }

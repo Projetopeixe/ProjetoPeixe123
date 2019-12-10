@@ -27,55 +27,32 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_peixe_passo2);
         getSupportActionBar().setTitle("Cadastro de Peixe");
+        carregarComponentes();
 
-        buttonNext = (Button) findViewById(R.id.buttonNextPasso2);
-        buttonBack = (Button) findViewById(R.id.buttonBackPasso2);
-        campoPeso = findViewById(R.id.campoPesoCadastroPeixe);
-        campoTamanho = findViewById(R.id.campoTamCadastroPeixe);
-        campoTag = findViewById(R.id.campoTagCadastroPeixe);
+        final Bundle dados = getIntent().getExtras();
+        if(dados != null){
 
+           buttonNext.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Double pesoRec = Double.parseDouble(campoPeso.getText().toString());
+                   Double tamanhoRec = Double.parseDouble(campoTamanho.getText().toString());
+                   String tagRec = campoTag.getText().toString();
+                   String especie = dados.getString("especieP").toString();
 
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String peso = campoPeso.getText().toString();
-                String tamanho = campoTamanho.getText().toString();
-                String tag = campoTag.getText().toString();
+                   Intent intent = new Intent(CadastroDePeixePasso2.this, CadastroDePeixePasso3.class);
+                   intent.putExtra("especieP2", especie);
+                   intent.putExtra("pesoP", pesoRec);
+                   intent.putExtra("tamanhoP", tamanhoRec);
+                   intent.putExtra("tagP", tagRec);
+                   startActivity(intent);
+                   finish();
 
-                if(!peso.isEmpty()){
-                    if(!tamanho.isEmpty()){
-                        if(!tag.isEmpty()){
-                            Double tamanho2 = Double.parseDouble(tamanho);
-                            Double peso2 = Double.parseDouble(peso);
-
-                            Bundle dados = getIntent().getExtras();
-
-                            if (dados != null){
-                                String especie = dados.getString("especie");
-
-                                Toast.makeText(getApplicationContext(), "Passou = " + especie, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
-                                intent.putExtra("especie", especie);
-                                intent.putExtra("peso", peso2);
-                                intent.putExtra("tamanho", tamanho2);
-                                intent.putExtra("tag", tag);
-
-                                Intent intent2 = new Intent(getApplicationContext(), CadastroDePeixePasso3.class);
-                                startActivity(intent2);
-                                finish();
-                            }
-
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Informe a Marca Tag", Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Informe o tamanho", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(), "Informe o peso", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+               }
+           });
+        }else{
+           Toast.makeText(getApplicationContext(), "Erro ao passar dados", Toast.LENGTH_SHORT).show();
+        }
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,4 +63,13 @@ public class CadastroDePeixePasso2 extends AppCompatActivity {
             }
         });
     }
+
+    public void carregarComponentes(){
+        buttonNext = (Button) findViewById(R.id.buttonNextPasso2);
+        buttonBack = (Button) findViewById(R.id.buttonBackPasso2);
+        campoPeso = findViewById(R.id.campoPesoCadastroPeixe);
+        campoTamanho = findViewById(R.id.campoTamCadastroPeixe);
+        campoTag = findViewById(R.id.campoTagCadastroPeixe);
+    }
+
 }

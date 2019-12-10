@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -49,36 +50,34 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_de_peixe_passo3);
         getSupportActionBar().setTitle("Cadastro de Peixe");
-
-        buttonNext = findViewById(R.id.buttonNextPasso3);
-        buttonBack = findViewById(R.id.buttonBackPasso3);
-        pesquisarLocation = findViewById(R.id.pesquisarLocation);
-        localizacao = findViewById(R.id.editTextLocalizacao);
+        carregarComponentes();
 
 
+        final Bundle dados = getIntent().getExtras();
 
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle dados = getIntent().getExtras();
-                if(dados != null) {
-                    String especie = dados.getString("especie");
-                    Double peso = dados.getDouble("peso");
-                    Double tamanho = dados.getDouble("tamanho");
-                    String tag = dados.getString("tag");
+        if(dados != null){
+            buttonNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String locationRec = localizacao.getText().toString();
+                    String especieRec = dados.getString("especieP2");
+                    Double tamanhoRec = dados.getDouble("tamanhoP");
+                    Double pesoRec = dados.getDouble("pesoP");
+                    String tagRec = dados.getString("tagP");
 
-                    Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso4.class);
-                    intent.putExtra("especie", especie);
-                    intent.putExtra("peso", peso);
-                    intent.putExtra("tamanho", tamanho);
-                    intent.putExtra("tag", tag);
+                    Intent intent = new Intent(CadastroDePeixePasso3.this, CadastroDePeixePasso4.class);
+                    intent.putExtra("especieP3", especieRec);
+                    intent.putExtra("tamanhoP2", tamanhoRec);
+                    intent.putExtra("pesoP2", pesoRec);
+                    intent.putExtra("tagP2", tagRec);
+                    intent.putExtra("localizacaoP", locationRec);
                     startActivity(intent);
                     finish();
                 }
-
-            }
-        });
-
+            });
+        }else {
+            Toast.makeText(getApplicationContext(), "Não funcionou", Toast.LENGTH_SHORT).show();
+        }
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,16 +92,12 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-
                 Double lat = location.getLatitude();
                 Double longi = location.getLongitude();
                 DecimalFormat format = new DecimalFormat("###.000");
                 String latitude = format.format(lat);
                 String longitude = format.format(longi);
-
-
                 localizacao.setHint("Lat: " + latitude+ ", Long: " + longitude);
-
             }
 
             @Override
@@ -135,7 +130,13 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                     locationListener
             );
         }
+    }
 
+    public void carregarComponentes(){
+        buttonNext = findViewById(R.id.buttonNextPasso3);
+        buttonBack = findViewById(R.id.buttonBackPasso3);
+        pesquisarLocation = findViewById(R.id.pesquisarLocation);
+        localizacao = findViewById(R.id.editTextLocalizacao);
     }
 
     public void carregarArmazenamento(View view){

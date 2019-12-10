@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso1;
+import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso2;
 
 public class CadastroDePeixePasso1 extends AppCompatActivity {
 
@@ -45,27 +47,17 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String especie = campoEspecie.getText().toString();
-
                 if (!especie.isEmpty()){
-                    Intent intent = new Intent(getApplicationContext(), CadastroDePeixePasso2.class);
-                    intent.putExtra("especie", especie);
+                    Intent intent = new Intent(CadastroDePeixePasso1.this, CadastroDePeixePasso2.class);
+                    intent.putExtra("especieP", especie);
                     startActivity(intent);
                     finish();
                 }else{
-
                     Toast.makeText(getApplicationContext(), "Informe a Espécie", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
         });
-
-
-
-
     }
-
-
 }
