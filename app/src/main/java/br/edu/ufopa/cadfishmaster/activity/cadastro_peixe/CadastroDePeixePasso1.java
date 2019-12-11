@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso1;
-import br.edu.ufopa.cadfishmaster.activity.cadastro_especies.CadastroDeEspeciesPasso2;
 
 public class CadastroDePeixePasso1 extends AppCompatActivity {
 

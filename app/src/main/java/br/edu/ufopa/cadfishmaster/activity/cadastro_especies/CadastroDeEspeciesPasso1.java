@@ -1,7 +1,10 @@
 package br.edu.ufopa.cadfishmaster.activity.cadastro_especies;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,15 +44,29 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Ocorreu um erro", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                    finish();
+
+                    sucessAoCadastrar();
                 }
             }
         });
     }
-
     public void carregarComponentes(){
         buttonNextespecie = findViewById(R.id.buttonProximoEspecie);
         especie = findViewById(R.id.especiePeixe);
+    }
+    public void sucessAoCadastrar(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sucesso ao realizar cadastro");
+        builder.setCancelable(false);
+        builder.setMessage("A espécie foi cadastrada com sucesso!");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
 }

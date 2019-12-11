@@ -43,7 +43,6 @@
             android:label="@string/title_activity_maps">
 
         </activity>
-        <activity android:name=".activity.cadastro_especies.CadastroDeEspeciesPasso2" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso4" />
         <activity android:name=".activity.cadastro_peixe.CadastroDePeixePasso3">
 
