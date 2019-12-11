@@ -2,11 +2,13 @@ package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -72,21 +74,8 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                     String tagRec = dados.getString("tagP");
 
                     Peixe peixe = new Peixe(especieRec, pesoRec, tamanhoRec, tagRec, locationRec);
-                    db.collection("peixes").add(peixe)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-
-                                    Toast.makeText(getApplicationContext(), "Cadastrou", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Não cadastrou", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                    db.collection("peixes").add(peixe);
+                    sucessoAoCadastrar();
                 }
             });
         }else {
@@ -196,5 +185,18 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         finish();
     }
 
-
+    public void sucessoAoCadastrar(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sucesso ao realizar cadastro");
+        builder.setCancelable(false);
+        builder.setMessage("O peixe foi cadastrado com sucesso!");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.create();
+        builder.show();
+    }
 }
