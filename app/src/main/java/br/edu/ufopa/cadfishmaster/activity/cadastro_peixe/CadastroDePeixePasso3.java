@@ -27,12 +27,17 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
 
 import br.edu.ufopa.cadfishmaster.MapsActivity;
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.model.Peixe;
 
 public class CadastroDePeixePasso3 extends AppCompatActivity {
 
@@ -44,6 +49,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
     private TextInputEditText localizacao;
     private LocationManager locationManager;
     private LocationListener locationListener;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +71,22 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                     Double pesoRec = dados.getDouble("pesoP");
                     String tagRec = dados.getString("tagP");
 
-                    Intent intent = new Intent(CadastroDePeixePasso3.this, CadastroDePeixePasso4.class);
-                    intent.putExtra("especieP3", especieRec);
-                    intent.putExtra("tamanhoP2", tamanhoRec);
-                    intent.putExtra("pesoP2", pesoRec);
-                    intent.putExtra("tagP2", tagRec);
-                    intent.putExtra("localizacaoP", locationRec);
-                    startActivity(intent);
-                    finish();
+                    Peixe peixe = new Peixe(especieRec, pesoRec, tamanhoRec, tagRec, locationRec);
+                    db.collection("peixes").add(peixe)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+
+                                    Toast.makeText(getApplicationContext(), "Cadastrou", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "Não cadastrou", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
             });
         }else {
@@ -97,7 +111,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                 DecimalFormat format = new DecimalFormat("###.000");
                 String latitude = format.format(lat);
                 String longitude = format.format(longi);
-                localizacao.setHint("Lat: " + latitude+ ", Long: " + longitude);
+                localizacao.setText("Lat: " + latitude+ ", Long: " + longitude);
             }
 
             @Override

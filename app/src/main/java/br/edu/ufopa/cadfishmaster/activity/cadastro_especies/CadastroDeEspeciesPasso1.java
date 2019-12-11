@@ -1,19 +1,22 @@
 package br.edu.ufopa.cadfishmaster.activity.cadastro_especies;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.HashMap;
 import br.edu.ufopa.cadfishmaster.R;
 
 public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
+
     private Button  buttonNextespecie;
     private TextInputEditText especie;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +31,16 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
                 if (especiePeixe.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Preenha o campo de espécie!", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent = new Intent(CadastroDeEspeciesPasso1.this, CadastroDeEspeciesPasso2.class);
-                    intent.putExtra("especie", especiePeixe);
-                    startActivity(intent);
+                    HashMap<Object, String> especie = new HashMap<>();
+                    especie.put("especie", especiePeixe);
+
+                    db.collection("especiespeixes").add(especie)
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "Ocorreu um erro", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                     finish();
                 }
             }
@@ -43,4 +53,3 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
     }
 
 }
-

@@ -25,6 +25,7 @@
     <string name="title_activity_mapa">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="confirmar_localizacao">Confirmar localização</string>
+    <string name="texto_finalizar">Finalizar</string>
     <string-array name="peixes">
         <item>Tambaqui</item>
         <item>Pacu</item>
