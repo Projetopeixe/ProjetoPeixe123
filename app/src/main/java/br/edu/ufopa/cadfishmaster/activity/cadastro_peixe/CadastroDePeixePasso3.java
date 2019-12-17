@@ -17,6 +17,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 import br.edu.ufopa.cadfishmaster.MapsActivity;
@@ -198,5 +203,27 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         });
         builder.create();
         builder.show();
+    }
+
+    private void salvarImagemPasta(String conteudoArq){
+        //Criar Pasta de arquivos
+        File folder = new File(Environment.getExternalStorageDirectory() + "/TEMP_IMG");
+
+        if(folder.exists()){
+            folder.mkdir();
+        }
+
+        String nomeArquivo = "Teste";
+        File arquivo = new File( Environment.getExternalStorageDirectory().getAbsolutePath(), "/TEMP_IMG" + nomeArquivo);
+        try {
+            FileOutputStream salvar = new FileOutputStream(arquivo);
+            salvar.write(conteudoArq.getBytes());
+            salvar.close();
+            
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

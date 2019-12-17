@@ -6,12 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import br.edu.ufopa.cadfishmaster.R;
 
@@ -69,4 +76,24 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
         builder.show();
     }
 
+    private void salvarImagemPasta(ImageView foto){
+        File folder = new File(Environment.getExternalStorageDirectory() + "/TEMP_IMG_ESPECIES");
+
+        if (!folder.exists()){
+            folder.mkdir();
+        }
+
+        String nomeArquivo = especie.getText().toString();
+        File arquivo = new File(Environment.getExternalStorageDirectory(),"/TEMP_IMG_ESPECIES" + nomeArquivo);
+        try {
+            FileOutputStream salvar = new FileOutputStream(arquivo);
+            salvar.write(foto.getImageAlpha());
+            salvar.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
