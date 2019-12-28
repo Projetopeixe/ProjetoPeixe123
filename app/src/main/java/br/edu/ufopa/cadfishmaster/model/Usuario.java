@@ -1,41 +1,21 @@
 package br.edu.ufopa.cadfishmaster.model;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
-
-import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class Usuario {
 
-    private String id;
+    private int id;
     private String nome;
     private String email;
     private String senha;
+    private byte[] imagem;
+    private Bitmap avatar;
+    private String urlAvatar;
 
-    public Usuario(){
 
-    }
-
-    public Usuario(String nome, String email, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-    }
-
-    public void salvar(){
-       DatabaseReference firebaseRef = ConfiguracaoDB.getFirebaseDatabase();
-       DatabaseReference usuario = firebaseRef.child("usuarios").child(getId());
-
-       usuario.setValue(this);
-    }
-
-    @Exclude
-    public String getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -48,18 +28,45 @@ public class Usuario {
 
     public String getEmail() {
         return email;
+
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
+            }
 
-    @Exclude
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+        if(this.imagem != null){
+            this.avatar = BitmapFactory.decodeByteArray(this.imagem, 0, this.imagem.length);
+        }
+    }
+
+    public Bitmap getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Bitmap avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getUrlAvatar() {
+        return urlAvatar;
+    }
+
+    public void setUrlAvatar(String urlAvatar) {
+        this.urlAvatar = urlAvatar;
     }
 }
