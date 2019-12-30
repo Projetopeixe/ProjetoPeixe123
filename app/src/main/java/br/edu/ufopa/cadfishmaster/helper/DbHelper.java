@@ -14,6 +14,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static String TABELA_USUARIOS = "usuarios";
     public static String TABELA_ESPECIES = "especies";
     public static String TABELA_PEIXES = "peixes";
+    public static String TABELA_SUPER_USUARIOS  = "sp_usuarios";
 
     public DbHelper(@Nullable Context context) {
         super(context, NOME_DB, null,VERSION);
@@ -41,10 +42,18 @@ public class DbHelper extends SQLiteOpenHelper {
                 " marca_tag TEXT NOT NULL, " +
                 " localizacao TEXT NOT NULL, " +
                 " icone BLOB)";
+
+        String sqlSuperUsuarios = "CREATE TABLE IF NOT EXISTS " + TABELA_SUPER_USUARIOS +
+                "(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+                " nome TEXT NOT NULL, " +
+                " email TEXT NOT NULL, " +
+                " senha TEXT NOT NULL);";
+
         try {
             db.execSQL(sqlUsuarioPadrao);
             db.execSQL(sqlEspecieNova);
             db.execSQL(sqlPeixe);
+            db.execSQL(sqlSuperUsuarios);
             Log.i("INFO DB", "Sucesso ao criar a tabelas");
         }catch (Exception e){
             Log.i("INFO DB", "Erro ao criar tabea" + e.getMessage());
