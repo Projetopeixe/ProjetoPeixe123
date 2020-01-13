@@ -70,29 +70,7 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     }
 
     public void logarUsuario(Usuario usuario){
-        autenticacao.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    abrirTelaPrincipal();
-                    finish();
-                }else{
-                    String excecao = "";
-                    try {
-                        throw task.getException();
-                    }catch (FirebaseAuthInvalidCredentialsException e) {
-                        excecao = "Usuário e senha não correspondem";
-                    }catch (FirebaseAuthInvalidUserException e){
-                        excecao = "Usuário não cadastrado";
-                    }catch (Exception e){
-                        excecao = "Erro ao logar usuário: " + e.getMessage();
-                        e.printStackTrace();
-                    }
-                    Toast.makeText(LoginUsuarioActivity.this, excecao, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
     }
 
     @Override
