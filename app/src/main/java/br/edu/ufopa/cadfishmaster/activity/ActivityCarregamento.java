@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 
 public class ActivityCarregamento extends AppCompatActivity {
 
@@ -19,16 +20,7 @@ public class ActivityCarregamento extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                try{
-                    SQLiteDatabase banco = openOrCreateDatabase("cadFishapp", MODE_PRIVATE, null);
-                    //Create Table de Usuários
-                   //banco.execSQL("CREATE TABLE IF NOT EXISTS usuarios()");
-
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
+                DbHelper db = new DbHelper(getApplicationContext());
                 abriTelaInicialLogin();
             }
         }, 3000);
