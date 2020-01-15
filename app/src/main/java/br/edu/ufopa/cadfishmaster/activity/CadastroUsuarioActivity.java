@@ -41,14 +41,17 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             if(!textEmail.isEmpty()){
                 if(!textSenha.isEmpty()){
                     if(!textConfirmacao.isEmpty()){
-                        if(textSenha == textConfirmacao){
-                            DbHelper db = new DbHelper(getApplicationContext());
-                            ContentValues cv = new ContentValues();
-                            cv.put("nome", textNome);
-                            cv.put("email", textEmail);
-                            cv.put("senha", textConfirmacao);
-                            Toast.makeText(getApplicationContext(), "Funcionou", Toast.LENGTH_SHORT).show();
-                            db.getWritableDatabase().insert(db.TABELA_USUARIOS, null,cv  );
+                        if(textSenha.equals(textConfirmacao)){
+                            try {
+                                DbHelper db = new DbHelper(getApplicationContext());
+                                ContentValues cv = new ContentValues();
+                                cv.put("nome", textNome);
+                                cv.put("email", textEmail);
+                                cv.put("senha", textConfirmacao);
+                                db.getWritableDatabase().insert(db.TABELA_USUARIOS, null,cv  );
+                            }catch (Exception e){
+                                Toast.makeText(getApplicationContext(), "Erro ao cadastrar usuário: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }else {
                             Toast.makeText(CadastroUsuarioActivity.this, "Senhas não conferem",Toast.LENGTH_SHORT).show();
                         }

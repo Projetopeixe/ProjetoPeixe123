@@ -1,27 +1,16 @@
 package br.edu.ufopa.cadfishmaster.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.config.ConfiguracaoDB;
-import br.edu.ufopa.cadfishmaster.config.Permissoes;
+import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class LoginUsuarioActivity extends AppCompatActivity {
@@ -34,7 +23,32 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_usuario);
         carregarComponentes();
-        //Validar Permissões
+
+
+        try {
+            DbHelper dbHelper = new DbHelper(this);
+            SQLiteDatabase db = openOrCreateDatabase(dbHelper.NOME_DB, MODE_PRIVATE, null);
+
+
+            Cursor cursor = db.rawQuery("SELECT email, senha FROM " + dbHelper.TABELA_USUARIOS, null);
+
+            int indiceEmail = cursor.getColumnIndex("email");
+            int indiceSenha = cursor.getColumnIndex("senha");
+
+            cursor.moveToFirst();
+            while (cursor != null) {
+
+                String email = cursor.getString(indiceEmail);
+                String senha = cursor.getString(indiceSenha);
+
+                Log.i("RESULTADO - email: ", email + " senha: " + senha);
+
+                cursor.moveToNext();
+
+            }
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Erro:  " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -68,8 +82,8 @@ public class LoginUsuarioActivity extends AppCompatActivity {
 
     public void logarUsuario(Usuario usuario){
 
-<<<<<<< HEAD
-        try{
+
+        /*try{
             SQLiteDatabase bancoDados = openOrCreateDatabase("app", MODE_PRIVATE, null);
             String pesquisa = "SELECT email, senha FROM usuarios WHERE email = " + campoEmail.getText();
             Cursor cursor = bancoDados.rawQuery(pesquisa, null);
@@ -91,17 +105,14 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
 
-        }
+        }*/
         
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if( usuarioAtual != null){
-            abrirTelaPrincipal();
-            fecharLogin();
-        }
+
     }
 
     public void fecharLogin(){
