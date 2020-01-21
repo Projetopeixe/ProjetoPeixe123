@@ -2,6 +2,7 @@ package br.edu.ufopa.cadfishmaster.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ImageView;
 
@@ -72,5 +73,17 @@ public class BancoController {
         }else {
             return "Peixe cadastrado com sucesso";
         }
+    }
+
+    public Cursor carregaDados(){
+        Cursor cursor;
+        String[] campos = {"id", "nome", "email"};
+        db = banco.getReadableDatabase();
+        cursor = db.query(banco.TABELA_USUARIOS,campos, null, null, null, null, null, null);
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
     }
 }

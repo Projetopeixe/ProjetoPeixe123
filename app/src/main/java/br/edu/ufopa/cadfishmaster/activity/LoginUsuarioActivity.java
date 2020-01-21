@@ -24,32 +24,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_usuario);
         carregarComponentes();
 
-
-        try {
-            DbHelper dbHelper = new DbHelper(this);
-            SQLiteDatabase db = openOrCreateDatabase(dbHelper.NOME_DB, MODE_PRIVATE, null);
-
-
-            Cursor cursor = db.rawQuery("SELECT email, senha FROM " + dbHelper.TABELA_USUARIOS, null);
-
-            int indiceEmail = cursor.getColumnIndex("email");
-            int indiceSenha = cursor.getColumnIndex("senha");
-
-            cursor.moveToFirst();
-            while (cursor != null) {
-
-                String email = cursor.getString(indiceEmail);
-                String senha = cursor.getString(indiceSenha);
-
-                Log.i("RESULTADO - email: ", email + " senha: " + senha);
-
-                cursor.moveToNext();
-
-            }
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Erro:  " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     public void abrirTelaCadastro(View view){
