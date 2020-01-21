@@ -35,17 +35,38 @@
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imagePeixe"
+        android:layout_width="209dp"
+        android:layout_height="198dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/peixe"
+        app:civ_border_color="#FFFFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="86dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="148dp"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:onClick="carregarArmazenamento"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNextPasso3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePeixe"
+        app:layout_constraintEnd_toEndOf="@+id/imagePeixe"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/imagePeixe"
         app:srcCompat="@drawable/ic_folder_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:onClick="carregarCamera"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePeixe"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/imagePeixe"
+        app:layout_constraintTop_toTopOf="@+id/imagePeixe"
+        app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
 
     <ImageView
         android:id="@+id/pesquisarLocation"
@@ -59,18 +80,6 @@
         app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_search_black_24dp" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="86dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="148dp"
-        android:onClick="carregarCamera"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBackPasso3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.816"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
 
     <TextView
         android:id="@+id/textView11"
@@ -95,11 +104,9 @@
         android:text="@string/texto_carregar_imagem"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -131,4 +138,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

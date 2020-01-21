@@ -1,16 +1,18 @@
 package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
@@ -19,38 +21,31 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.text.DecimalFormat;
-
 import br.edu.ufopa.cadfishmaster.MapsActivity;
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 import br.edu.ufopa.cadfishmaster.model.Peixe;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CadastroDePeixePasso3 extends AppCompatActivity {
 
     private Button buttonNext;
     private Button buttonBack;
     private ImageView pesquisarLocation;
+    private CircleImageView fotoPeixe;
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
     private TextInputEditText localizacao;
@@ -78,8 +73,11 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                     Double pesoRec = dados.getDouble("pesoP");
                     String tagRec = dados.getString("tagP");
 
-                    Peixe peixe = new Peixe(especieRec, pesoRec, tamanhoRec, tagRec, locationRec);
-                    db.collection("peixes").add(peixe);
+                    ContentValues cv = new ContentValues();
+                    String sql = "INSERT INTO peixes VALUES(?,?,?,?,?,?);";
+                    DbHelper dbHelper = new DbHelper(CadastroDePeixePasso3.this);
+                    SQLiteDatabase bd = openOrCreateDatabase(dbHelper.NOME_DB, MODE_PRIVATE, null);
+                    //bd.insert()
                     sucessoAoCadastrar();
                 }
             });
@@ -145,6 +143,7 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
         buttonBack = findViewById(R.id.buttonBackPasso3);
         pesquisarLocation = findViewById(R.id.pesquisarLocation);
         localizacao = findViewById(R.id.editTextLocalizacao);
+        fotoPeixe = findViewById(R.id.imagePeixe);
     }
 
     public void carregarArmazenamento(View view){
@@ -176,6 +175,14 @@ public class CadastroDePeixePasso3 extends AppCompatActivity {
                         Uri localImagemSelecionada = data.getData();
                         imagem =  MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelecionada);
                         break;
+                }
+                if(imagem != null){
+                   fotoPeixe.setImageBitmap(imagem);
+
+                    //recuperar
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                    byte[] dadosImagem = baos.toByteArray();
                 }
 
             }catch (Exception e){

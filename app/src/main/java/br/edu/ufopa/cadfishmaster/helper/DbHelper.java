@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static  int VERSION = 1;
-    public static String NOME_DB = "DB_CADFISH.db";
+    public static String NOME_DB = "db_cadfish.db";
     public static String TABELA_USUARIOS = "usuarios";
     public static String TABELA_ESPECIES = "especies";
     public static String TABELA_PEIXES = "peixes";
@@ -31,17 +31,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
         String sqlEspecieNova = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESPECIES +
                 " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-                " nome TEXT NOT NULL, " +
-                " icone BLOB);";
+                " nome TEXT NOT NULL);";
 
         String sqlPeixe = "CREATE TABLE IF NOT EXISTS " + TABELA_PEIXES +
                 " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
                 " nome TEXT NOT NULL, " +
-                " peso INTEGER NOT NULL, " +
-                " tamanho INTEGER NOT NULL, " +
+                " peso REAL NOT NULL, " +
+                " tamanho REAL NOT NULL, " +
                 " marca_tag TEXT NOT NULL, " +
-                " localizacao TEXT NOT NULL, " +
-                " icone BLOB)";
+                " localizacao TEXT NOT NULL)";
 
         String sqlSuperUsuarios = "CREATE TABLE IF NOT EXISTS " + TABELA_SUPER_USUARIOS +
                 "(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
