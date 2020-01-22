@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
@@ -62,5 +61,14 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        String sqlUser = "DROP TABLE IF EXISTS " + TABELA_USUARIOS + ";";
+
+        try{
+            db.execSQL(sqlUser);
+            onCreate(db);
+            Log.i("INFO DB", "Sucesso ao Atualizar App");
+        }catch (Exception e){
+            Log.i("INFO DB", "Erro ao atualizar app");
+        }
     }
 }

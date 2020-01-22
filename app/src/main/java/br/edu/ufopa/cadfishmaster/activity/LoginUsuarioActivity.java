@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.helper.BancoController;
 import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 import br.edu.ufopa.cadfishmaster.model.Usuario;
 
@@ -86,7 +87,15 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        /*BancoController bancoInstance = new BancoController(this);
+        Cursor cursor = bancoInstance.carregaDados();
 
+        int indiceEmail = cursor.getColumnIndex("email");
+        int indiceSenha = cursor.getColumnIndex("senha");
+
+        while (cursor != null){
+            Toast.makeText(this, "Carregaou", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     public void fecharLogin(){

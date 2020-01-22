@@ -77,7 +77,7 @@ public class BancoController {
 
     public Cursor carregaDados(){
         Cursor cursor;
-        String[] campos = {"id", "nome", "email"};
+        String[] campos = {"nome", "email"};
         db = banco.getReadableDatabase();
         cursor = db.query(banco.TABELA_USUARIOS,campos, null, null, null, null, null, null);
         if (cursor != null){
