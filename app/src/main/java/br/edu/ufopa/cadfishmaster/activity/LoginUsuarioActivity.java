@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.helper.BancoController;
 import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 import br.edu.ufopa.cadfishmaster.model.Usuario;
 
@@ -25,6 +24,21 @@ public class LoginUsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_usuario);
         carregarComponentes();
 
+        try{
+            DbHelper dbHelper = new DbHelper(this);
+           SQLiteDatabase bancoDados = openOrCreateDatabase(dbHelper.NOME_DB, MODE_PRIVATE, null );
+
+           String sqlRaw = "SELECT id, nome, email FROM " + dbHelper.TABELA_USUARIOS +" ";
+           Cursor cursor = bancoDados.rawQuery(sqlRaw, null);
+
+           while (cursor != null){
+               Log.i("Resultado = ID = ", cursor.getInt(cursor.getColumnIndex("id")) + " / NOME = "
+                       + cursor.getString(cursor.getColumnIndex("nome")) + " / EMAIL = " + cursor.getString(cursor.getColumnIndex("email")));
+           }
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void abrirTelaCadastro(View view){
@@ -40,7 +54,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     public void validarAutenticacao(View view){
         String email = campoEmail.getText().toString();
         String senha = campoSenha.getText().toString();
-
         if(!email.isEmpty()){
             if(!senha.isEmpty()){
                 Usuario usuario = new Usuario();
@@ -56,8 +69,6 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     }
 
     public void logarUsuario(Usuario usuario){
-
-
         /*try{
             SQLiteDatabase bancoDados = openOrCreateDatabase("app", MODE_PRIVATE, null);
             String pesquisa = "SELECT email, senha FROM usuarios WHERE email = " + campoEmail.getText();
@@ -87,7 +98,7 @@ public class LoginUsuarioActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        /*BancoController bancoInstance = new BancoController(this);
+        /*BancoDAO bancoInstance = new BancoDAO(this);
         Cursor cursor = bancoInstance.carregaDados();
 
         int indiceEmail = cursor.getColumnIndex("email");

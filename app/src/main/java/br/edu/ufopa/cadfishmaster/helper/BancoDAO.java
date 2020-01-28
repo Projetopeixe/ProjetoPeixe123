@@ -6,12 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ImageView;
 
-public class BancoController {
+public class BancoDAO {
 
     private SQLiteDatabase db;
     private DbHelper banco;
 
-    public BancoController(Context context){
+    public BancoDAO(Context context){
         banco = new DbHelper(context);
     }
 
@@ -29,9 +29,9 @@ public class BancoController {
         db.close();
 
         if(resultado == -1){
-            return "Erro ao cadastrar usuário";
+            return "FAILED";
         }else{
-            return "Usuário cadastrado com sucesso!";
+            return "OK";
         }
     }
 
@@ -43,13 +43,13 @@ public class BancoController {
         valores = new ContentValues();
         valores.put("especie", especie);
 
-        resultado = db.insert(banco.TABELA_ESPECIES, null, valores);
+        resultado = db.insert(banco.TABELA_ESPECIES, "icone", valores);
         db.close();
 
         if(resultado == -1){
-            return "Erro ao cadastrar espécie";
+            return "FAILED";
         }else {
-            return "Espécie cadastrada com sucesso";
+            return "OK";
         }
     }
 
@@ -65,13 +65,13 @@ public class BancoController {
         valores.put("marca_tag", marca_tag);
         valores.put("localizacao", localizacao);
 
-        resultado = db.insert(banco.TABELA_PEIXES, null, valores);
+        resultado = db.insert(banco.TABELA_PEIXES, "icone", valores);
         db.close();
 
         if(resultado == -1){
-            return "Erro ao cadastrar peixe";
+            return "FAILED";
         }else {
-            return "Peixe cadastrado com sucesso";
+            return "OK";
         }
     }
 

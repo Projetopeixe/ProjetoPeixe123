@@ -20,7 +20,7 @@ public class ActivityCarregamento extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                DbHelper db = new DbHelper(getApplicationContext());
+
                 abriTelaInicialLogin();
             }
         }, 3000);

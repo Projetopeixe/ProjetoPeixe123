@@ -62,9 +62,13 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         String sqlUser = "DROP TABLE IF EXISTS " + TABELA_USUARIOS + ";";
+        String sqlPeixe = "DROP TABLE IF EXISTS " + TABELA_PEIXES + ";";
+        String sqlEspecie = "DROP TABLE IF EXISTS " + TABELA_ESPECIES + ";";
 
         try{
             db.execSQL(sqlUser);
+            db.execSQL(sqlPeixe);
+            db.execSQL(sqlEspecie);
             onCreate(db);
             Log.i("INFO DB", "Sucesso ao Atualizar App");
         }catch (Exception e){

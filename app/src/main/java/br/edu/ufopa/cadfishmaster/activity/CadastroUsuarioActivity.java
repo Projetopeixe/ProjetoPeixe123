@@ -3,13 +3,16 @@ package br.edu.ufopa.cadfishmaster.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.Cursor;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import br.edu.ufopa.cadfishmaster.R;
-import br.edu.ufopa.cadfishmaster.helper.BancoController;
+import br.edu.ufopa.cadfishmaster.helper.BancoDAO;
+import br.edu.ufopa.cadfishmaster.helper.DbHelper;
+import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -42,12 +45,23 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 if(!textSenha.isEmpty()){
                     if(!textConfirmacao.isEmpty()){
                         if(textSenha.equals(textConfirmacao)){
-                            BancoController bd = new BancoController(this);
+                            Usuario usuario = new Usuario(textNome, textEmail, textSenha);
+                            ContentValues cv = new ContentValues();
+                            cv.put("nome", usuario.getNome());
+                            cv.put("email", usuario.getEmail());
+                            cv.put("senha", usuario.getSenha());
 
-                            String resultado = bd.insereUsuario(textNome, textEmail, textSenha);
+                            DbHelper db = new DbHelper(this);
+                            long result = db.getWritableDatabase().insert(db.TABELA_USUARIOS, null, cv);
 
-                            Toast.makeText(CadastroUsuarioActivity.this, resultado, Toast.LENGTH_SHORT).show();
-
+                            if(result == -1){
+                                Toast.makeText(CadastroUsuarioActivity.this, "Erro ao cadastrar Usuário!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(CadastroUsuarioActivity.this, "Sucesso ao realizar cadastro!", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
                         }else {
                             Toast.makeText(CadastroUsuarioActivity.this, "Senhas não conferem",Toast.LENGTH_SHORT).show();
                         }
