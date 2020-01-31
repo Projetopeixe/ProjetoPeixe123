@@ -30,7 +30,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
         String sqlEspecieNova = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESPECIES +
                 " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-                " nome TEXT NOT NULL);";
+                " nome TEXT NOT NULL, " +
+                " icone BLOB);";
 
         String sqlPeixe = "CREATE TABLE IF NOT EXISTS " + TABELA_PEIXES +
                 " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +

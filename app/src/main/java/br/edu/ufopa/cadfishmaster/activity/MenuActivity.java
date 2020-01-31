@@ -30,8 +30,6 @@ import br.edu.ufopa.cadfishmaster.fragments.FragmentMenuCadastrarPeixe;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth =FirebaseAuth.getInstance();
-
     private  String[] permissoesNecessarias = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION,
@@ -44,9 +42,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         setTitle("Cad Fish");
         getSupportActionBar().setElevation(0);
-
         Permissoes.validarPermissoes(permissoesNecessarias, this, 1);
-
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(),
                 FragmentPagerItems.with(this)
@@ -57,7 +53,6 @@ public class MenuActivity extends AppCompatActivity {
         );
         ViewPager viewPager = findViewById(R.id.viewpager2);
         viewPager.setAdapter( adapter );
-
         SmartTabLayout viewPagerTab = findViewById(R.id.smartTabLayout);
         viewPagerTab.setViewPager( viewPager );
     }
@@ -73,8 +68,6 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuDeslogar:
-                deslogarUsuario();
-
                 Intent intent = new Intent(getApplicationContext(), LoginUsuarioActivity.class);
                 startActivity(intent);
                 finish();
@@ -82,16 +75,10 @@ public class MenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void deslogarUsuario(){
-        auth.signOut();
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         for (int permissaoResultado: grantResults){
-
             if(permissaoResultado == PackageManager.PERMISSION_DENIED){
                 alertaValidacaoPermissao();
             }
@@ -105,10 +92,8 @@ public class MenuActivity extends AppCompatActivity {
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

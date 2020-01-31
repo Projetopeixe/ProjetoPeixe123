@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +25,7 @@ import javax.annotation.Nullable;
 
 import br.edu.ufopa.cadfishmaster.R;
 import br.edu.ufopa.cadfishmaster.helper.DbHelper;
+import br.edu.ufopa.cadfishmaster.model.EspeciesPeixes;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
@@ -44,8 +46,7 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
         buttonNextespecie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                salvarDados();
             }
         });
 
@@ -91,16 +92,22 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
                 if(imagem != null){
                     fotoEspecie.setImageBitmap(imagem);
 
-                    //recuperar
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
-                    byte[] dadosImagem = baos.toByteArray();
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
     }
+
+    public byte[] convertToByte(CircleImageView imagem) {
+        BitmapDrawable drawable = (BitmapDrawable) imagem.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte imagemBytes[] = stream.toByteArray();
+        return imagemBytes;
+    }
+
     public void carregarComponentes(){
         buttonNextespecie = findViewById(R.id.buttonProximoEspecie);
         especie = findViewById(R.id.especiePeixe);
@@ -123,18 +130,23 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
         builder.show();
     }
 
-    public boolean salvarDados(CircleImageView image){
+    public void salvarDados(){
         String especiePeixe = especie.getText().toString();
         if (especiePeixe.isEmpty()){
             Toast.makeText(getApplicationContext(), "Preencha o campo de espécie!", Toast.LENGTH_SHORT).show();
         }else{
-            DbHelper dbReference = new DbHelper(CadastroDeEspeciesPasso1.this);
-            SQLiteDatabase bd  = openOrCreateDatabase(dbReference.NOME_DB, MODE_PRIVATE, null);
-            ContentValues cv = new ContentValues();
-            cv.put("especie", especiePeixe);
+            byte[] imagem = convertToByte(fotoEspecie);
+            EspeciesPeixes newEspecie = new EspeciesPeixes(especiePeixe, imagem);
+            String sql = "INSERT INTO especies (nome, icone) VALUES ("+ newEspecie.getNome() + ", " + newEspecie.getImagem() + "();";
+            try{
+                DbHelper db = new DbHelper(this);
+                SQLiteDatabase bd = openOrCreateDatabase(db.NOME_DB, MODE_PRIVATE, null);
 
-            bd.insert(dbReference.TABELA_ESPECIES, null, cv);
+                bd.execSQL(sql);
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "Erro ao cadastraar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
-        return true;
+
     }
 }
