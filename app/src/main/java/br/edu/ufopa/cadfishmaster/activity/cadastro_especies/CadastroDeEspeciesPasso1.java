@@ -28,6 +28,7 @@ import java.sql.SQLException;
 import javax.annotation.Nullable;
 
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.activity.MenuActivity;
 import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 import br.edu.ufopa.cadfishmaster.model.EspeciesPeixes;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -127,6 +128,8 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -145,8 +148,7 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
             try{
                 DbHelper db = new DbHelper(this);
                 db.inserirDataEspecie(newEspecie.getNome(), newEspecie.getImagem());
-                Toast.makeText(getApplicationContext(), "Sucesso ao realizar cadastro!", Toast.LENGTH_SHORT).show();
-                finish();
+                sucessAoCadastrar();
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), "Erro ao cadastraar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }

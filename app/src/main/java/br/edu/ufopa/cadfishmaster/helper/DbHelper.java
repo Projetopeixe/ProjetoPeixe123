@@ -37,6 +37,18 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void inserirDataUsuario(Usuario usuario){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "INSERT INTO " + this.TABELA_USUARIOS + " VALUES(null,?,?,?,?)";
+
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+        statement.bindString(1, usuario.getNome());
+        statement.bindString(2, usuario.getEmail());
+        statement.bindString(3, usuario.getSenha());
+        statement.bindBlob(4, usuario.getIcon());
+
+        statement.executeInsert();
 
     }
     public Cursor getData(String sql){
@@ -44,13 +56,21 @@ public class DbHelper extends SQLiteOpenHelper {
         return datadabe.rawQuery(sql, null);
     }
 
+    public Cursor getNameEspecies(){
+        SQLiteDatabase database = getReadableDatabase();
+        String sql = "SELECT nome FROM " + TABELA_ESPECIES + "";
+        return  database.rawQuery(sql, null);
+    }
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sqlUsuarioPadrao = "CREATE TABLE IF NOT EXISTS " + TABELA_USUARIOS
                 + "(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
                 " nome TEXT NOT NULL, " +
                 " email TEXT NOT NULL, " +
-                " senha TEXT NOT NULL " +
+                " senha TEXT NOT NULL, " +
+                " icone BLOB "+
                 ");";
 
         String sqlEspecieNova = "CREATE TABLE IF NOT EXISTS "+ TABELA_ESPECIES +

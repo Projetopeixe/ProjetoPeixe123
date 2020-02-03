@@ -1,12 +1,15 @@
 package br.edu.ufopa.cadfishmaster.activity;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.io.ByteArrayOutputStream;
 
 import javax.annotation.Nullable;
 
@@ -46,14 +51,20 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         imagemCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if(i.resolveActivity(getPackageManager()) != null){
+                    startActivityForResult(i, SELECAO_CAMERA);
+                }
             }
         });
 
         imagemArmazenamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if(i.resolveActivity(getPackageManager()) != null){
+                    startActivityForResult(i, SELECAO_GALERIA);
+                }
             }
         });
     }
@@ -78,7 +89,15 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 if(!textSenha.isEmpty()){
                     if(!textConfirmacao.isEmpty()){
                         if(textSenha.equals(textConfirmacao)){
-                            Usuario usuario = new Usuario(textNome, textEmail, textSenha);
+                            byte[] imagem = convertToByte(fotoUser);
+                            Usuario usuario = new Usuario(textNome, textEmail, textSenha, imagem);
+                            try{
+                                DbHelper db  = new DbHelper(this);
+                                db.inserirDataUsuario(usuario);
+                                sucessAoCadastrar();
+                            }catch (Exception e){
+                                Toast.makeText(getApplicationContext(), "Erro ao cadastraar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
 
                         }else {
                             Toast.makeText(CadastroUsuarioActivity.this, "Senhas não conferem",Toast.LENGTH_SHORT).show();
@@ -124,5 +143,31 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public byte[] convertToByte(CircleImageView imagem) {
+        BitmapDrawable drawable = (BitmapDrawable) imagem.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte imagemBytes[] = stream.toByteArray();
+        return imagemBytes;
+    }
+
+    public void sucessAoCadastrar(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sucesso ao realizar cadastro");
+        builder.setCancelable(false);
+        builder.setMessage("Usuário cadastrado com sucesso!");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 }

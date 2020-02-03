@@ -2,6 +2,8 @@ package br.edu.ufopa.cadfishmaster.activity.cadastro_peixe;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,7 +11,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import br.edu.ufopa.cadfishmaster.R;
+import br.edu.ufopa.cadfishmaster.helper.DbHelper;
 
 public class CadastroDePeixePasso1 extends AppCompatActivity {
 
@@ -25,11 +31,12 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_de_peixes_passo1);
         getSupportActionBar().setTitle("Cadastro de Peixe");
 
-        final String[] peixes = getResources().getStringArray(R.array.peixes);
+        final ArrayList<String> peixes = obterEspecies();
+
         ImageView imag = findViewById(R.id.btautocomplete);
         final AutoCompleteTextView editText = findViewById(R.id.campoEspeciePeixe);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.autocomplete, R.id.text_view_list_item, PEIXES);
+                R.layout.autocomplete, R.id.text_view_list_item, peixes);
         editText.setAdapter(adapter);
 
         imag.setOnClickListener(new View.OnClickListener() {
@@ -57,5 +64,31 @@ public class CadastroDePeixePasso1 extends AppCompatActivity {
             }
 
         });
+    }
+
+    public ArrayList<String> obterEspecies(){
+
+        try{
+            DbHelper db = new DbHelper(this);
+            SQLiteDatabase database = openOrCreateDatabase(db.NOME_DB, MODE_PRIVATE, null);
+
+            Cursor cursor = db.getNameEspecies();
+
+            int indiceNome = cursor.getColumnIndex("nome");
+            ArrayList<String> peixes = new ArrayList<>();
+            cursor.moveToFirst();
+            while (cursor.getCount() > 0){
+                peixes.add(cursor.getString(indiceNome));
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+            return peixes;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return null;
     }
 }
