@@ -13,7 +13,7 @@
         tools:context=".activity.CadastroUsuarioActivity">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/fotoUser"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginStart="32dp"
@@ -40,7 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3">
+            app:layout_constraintTop_toBottomOf="@+id/fotoUser">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextNomeCadastro"
@@ -129,5 +129,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50121653" />
+
+        <ImageView
+            android:id="@+id/imagemFotoUserCamera"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fotoUser"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="@+id/fotoUser"
+            app:layout_constraintTop_toTopOf="@+id/fotoUser"
+            app:layout_constraintVertical_bias="0.564"
+            app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+
+        <ImageView
+            android:id="@+id/imagemFotoUserGaleria"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fotoUser"
+            app:layout_constraintEnd_toEndOf="@+id/fotoUser"
+            app:layout_constraintHorizontal_bias="0.318"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/fotoUser"
+            app:layout_constraintVertical_bias="0.564"
+            app:srcCompat="@drawable/ic_folder_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -20,6 +20,10 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 import javax.annotation.Nullable;
 
@@ -137,12 +141,12 @@ public class CadastroDeEspeciesPasso1 extends AppCompatActivity {
         }else{
             byte[] imagem = convertToByte(fotoEspecie);
             EspeciesPeixes newEspecie = new EspeciesPeixes(especiePeixe, imagem);
-            String sql = "INSERT INTO especies (nome, icone) VALUES ("+ newEspecie.getNome() + ", " + newEspecie.getImagem() + "();";
+
             try{
                 DbHelper db = new DbHelper(this);
-                SQLiteDatabase bd = openOrCreateDatabase(db.NOME_DB, MODE_PRIVATE, null);
-
-                bd.execSQL(sql);
+                db.inserirDataEspecie(newEspecie.getNome(), newEspecie.getImagem());
+                Toast.makeText(getApplicationContext(), "Sucesso ao realizar cadastro!", Toast.LENGTH_SHORT).show();
+                finish();
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), "Erro ao cadastraar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }

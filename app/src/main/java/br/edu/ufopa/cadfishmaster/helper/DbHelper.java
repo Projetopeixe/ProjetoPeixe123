@@ -1,10 +1,14 @@
 package br.edu.ufopa.cadfishmaster.helper;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 import androidx.annotation.Nullable;
+
+import br.edu.ufopa.cadfishmaster.model.Usuario;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -17,6 +21,27 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public DbHelper(@Nullable Context context) {
         super(context, NOME_DB, null,VERSION);
+    }
+
+    public void inserirDataEspecie(String name, byte[] image){
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "INSERT INTO " + this.TABELA_ESPECIES + " VALUES (NULL, ?, ?)";
+
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+        statement.bindString(1, name );
+        statement.bindBlob(2, image);
+
+        statement.executeInsert();
+    }
+
+    public void inserirDataUsuario(Usuario usuario){
+
+    }
+    public Cursor getData(String sql){
+        SQLiteDatabase datadabe = getReadableDatabase();
+        return datadabe.rawQuery(sql, null);
     }
 
     @Override
